@@ -18,7 +18,7 @@ export default function Search({ value, onChange, className, disabled, placehold
     return (
         <div className="relative flex flex-col w-full gap-1">
 
-            <div className={`flex items-center relative rounded-[4px] bg-white dark:bg-primary/[0.04] dark:text-gray w-full h-[40px] p-1 px-4 border duration-500 z-[10] 
+            <div className={`flex items-center relative rounded-lg bg-white dark:bg-primary/[0.04] dark:text-gray w-full p-2 px-4 border duration-500 
                 ${focus ? "border-primary shadow-input-active" : "border-primary/[0.1] "}
                 ${className}
             `}>
