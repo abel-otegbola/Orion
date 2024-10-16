@@ -18,7 +18,7 @@ export default function Button({ variant, className, href, size, disabled, onCli
     }
 
     return (
-        <button className={`md:text-[14px] text-[12px] duration-500 rounded
+        <button className={`duration-500 rounded-lg
             ${variants[variant || "primary"]}
             ${disabled ? "opacity-[0.25]" : ""}
             ${size === "full" ? "w-full" : "w-fit"}
@@ -32,11 +32,11 @@ export default function Button({ variant, className, href, size, disabled, onCli
         >
             { 
             href ? 
-                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 md:p-[8px] py-1 md:px-6 px-4"> 
+                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 py-4 px-6"> 
                     { children }
                 </a>
                 :
-                <p className="flex items-center justify-center md:gap-3 gap-2 md:p-[8px] py-1 md:px-6 px-4">{ children }</p>
+                <p className="flex items-center justify-center md:gap-3 gap-2 py-4 px-6">{ children }</p>
             }
         </button>
     )

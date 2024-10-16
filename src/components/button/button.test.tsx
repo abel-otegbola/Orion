@@ -1,5 +1,5 @@
-import { expect, test } from 'vitest'
-import { render, screen } from '@testing-library/react';
+import { expect, test, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import Button, { buttonProps } from './button';
 import { describe } from 'node:test';
@@ -19,4 +19,10 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toBeDefined()
 
   });
+  test('calls onClick prop when clicked', () => {
+    const handleClick = vi.fn()
+    render(<Button onClick={handleClick}>Click Me</Button>)
+    fireEvent.click(screen.getByText(/click me/i))
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
 });
