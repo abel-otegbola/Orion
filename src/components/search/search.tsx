@@ -18,11 +18,11 @@ export default function Search({ value, onChange, className, disabled, placehold
     return (
         <div className="relative flex flex-col w-full gap-1">
 
-            <div className={`flex items-center relative rounded-lg bg-white dark:bg-primary/[0.04] dark:text-gray w-full p-2 px-4 border duration-500 
-                ${focus ? "border-primary shadow-input-active" : "border-primary/[0.1] "}
+            <div className={`flex items-center gap-1 relative rounded-lg bg-white dark:bg-primary/[0.04] dark:text-gray w-full p-2 px-4 border duration-500 
+                ${focus ? "border-primary shadow-input-active" : "border-black/[0.2] "}
                 ${className}
             `}>
-                <span className="opacity-[0.5]"><Search01Icon size={16} /></span>
+                <span className="opacity-[0.5]"><Search01Icon /></span>
                 <input 
                     className={` p-2 w-full outline-none bg-transparent
                         ${className} 
