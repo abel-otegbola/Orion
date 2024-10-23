@@ -14,7 +14,7 @@ export default function Button({ variant, className, href, size, disabled, onCli
     const variants = {
         primary: "hover:bg-black/[0.8] bg-black dark:bg-[#000]/[0.2] text-white border border-black dark:border-none",
         secondary: "hover:bg-black hover:text-white border border-black dark:border-white/[0.1]",
-        tetiary: ""
+        tetiary: "bg-gray-500/[0.09] hover:bg-gray-500/[0.2] border border-gray-500/[0.09] "
     }
 
     return (
@@ -32,11 +32,11 @@ export default function Button({ variant, className, href, size, disabled, onCli
         >
             { 
             href ? 
-                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 py-2 px-6"> 
+                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 py-3 px-6"> 
                     { children }
                 </a>
                 :
-                <p className="flex items-center justify-center md:gap-3 gap-2 py-2 px-6">{ children }</p>
+                <p className="flex items-center justify-center md:gap-3 gap-2 py-3 px-6">{ children }</p>
             }
         </button>
     )

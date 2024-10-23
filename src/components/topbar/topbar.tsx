@@ -23,16 +23,16 @@ function Topbar() {
     })
 
     const navTabs: navTab[] = [
-        { id: 0, label: "Home", to: "/", icon: <House /> },
-        { id: 1, label: "About", to: "/about", icon: <Info /> },
-        { id: 2, label: "Contact", to: "/contact", icon: <Headphones /> },
+        { id: 0, label: "Home", to: "/", icon: <House size={16}/> },
+        { id: 1, label: "About", to: "/about", icon: <Info size={16}/> },
+        { id: 2, label: "Contact", to: "/contact", icon: <Headphones size={16}/> },
     ]
     
 
     return (
         <div className="flex py-4 md:px-[8%] px-6 justify-between items-center border-b border-gray-500/[0.1]">
             <div className="md:w-[17%]">
-                <Link href="/" className="px-6 w-fit h-[40px] md:bg-primary/[0.04] rounded flex justify-center items-center font-bold">Logo</Link>
+                <Link href="/" className="px-6 w-fit h-[40px] bg-primary/[0.04] rounded flex justify-center items-center font-bold">Logo</Link>
             </div>
 
             <nav className="md:flex items-center gap-4 hidden">
@@ -45,12 +45,12 @@ function Topbar() {
 
             <div className="flex gap-8 items-center">
                 <Link href="/inbox">
-                    <Bell size={20}/>
+                    <Bell weight="light" size={20}/>
                 </Link>
                 <Link href="/settings">
-                    <Gear size={20}/>
+                    <Gear weight="light" size={20}/>
                 </Link>
-                <Button >Login</Button>
+                <Button href="/login">Login</Button>
             </div>
         </div>
     )
