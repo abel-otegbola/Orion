@@ -1,5 +1,7 @@
 'use client'
 
+import Skeleton from "@/components/skeleton/skeleton";
+
 export default function Home() {
   
   return (
@@ -8,6 +10,7 @@ export default function Home() {
 
         <div className="md:w-[50%] flex flex-col gap-4 items-center">
           <h1 className="md:text-[48px] text-[32px] font-semibold uppercase">Next-js Boilerplate</h1>
+          <Skeleton type="paragraph" />
         </div>
       </header>
       
