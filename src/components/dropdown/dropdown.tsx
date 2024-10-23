@@ -1,6 +1,6 @@
 'use client'
 import { useOutsideClick } from "@/helpers/useClickOutside";
-import { ArrowDown01Icon, FilterEditIcon } from "hugeicons-react";
+import { CaretDown, SortAscending } from "@phosphor-icons/react";
 import { ReactNode, useRef, useState } from "react";
 
 type option = {
@@ -44,7 +44,7 @@ export default function Dropdown({ className, disabled, label, name, options, va
                 ${focus ? "border-primary shadow-input-active" : " "}
                 ${ className }
             `}>
-                <span className="text-[16px]">{ active.icon || <FilterEditIcon /> }</span>
+                <span className="text-[16px]">{ active.icon || <SortAscending /> }</span>
                 <input
                     ref={inputRef}
                     className={` p-2 w-full outline-none bg-transparent cursor-pointer
@@ -61,7 +61,7 @@ export default function Dropdown({ className, disabled, label, name, options, va
                 />
 
                 { error && !focus ? <p className="absolute right-2 px-2 text-[12px] bg-white dark:bg-dark backdrop-blur-sm">{error}</p> : "" }
-                <span className={`${!focus ? "rotate-0" : "rotate-180" } duration-500`}><ArrowDown01Icon /></span>
+                <span className={`${!focus ? "rotate-0" : "rotate-180" } duration-500`}><CaretDown /></span>
             </div>
 
             <div className={`rounded-[8px] absolute top-[60px] left-0 w-full max-h-[200px] overflow-y-auto z-[1000] bg-white dark:bg-dark dark:text-gray shadow-md duration-700 overflow-y-auto border border-gray/[0.2] ${focus ? "block" : "hidden"}`}>

@@ -1,6 +1,5 @@
 'use client'
-
-import { ViewIcon, ViewOffSlashIcon } from "hugeicons-react";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 import { ReactNode, InputHTMLAttributes, useState } from "react";
 
 interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -48,7 +47,7 @@ export default function Input({ className, disabled, label, name, value, type, o
 
                 { error && !focus ? <p className="absolute right-2 px-2 text-[12px] bg-white dark:bg-dark text-red-500 backdrop-blur-sm">{error}</p> : "" }
                 { type === "password" ? 
-                    <span tabIndex={1} className="p-2 cursor-pointer" title="toggle show password" aria-checked={show} onClick={() => setShow(!show)}>{ show ? <ViewIcon /> : <ViewOffSlashIcon /> }</span>
+                    <span tabIndex={1} className="p-2 cursor-pointer" title="toggle show password" aria-checked={show} onClick={() => setShow(!show)}>{ show ? <Eye /> : <EyeSlash /> }</span>
                 : "" }
             </div>
         </div>

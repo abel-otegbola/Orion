@@ -1,5 +1,6 @@
 'use client'
-import { Apple01Icon, Facebook01Icon, InstagramIcon, MasterCardIcon, PaypalIcon, TwitterIcon, VineSquareIcon } from "hugeicons-react";
+
+import { FacebookLogo, InstagramLogo, XLogo } from "@phosphor-icons/react";
 
 
 function Footer() {
@@ -9,17 +10,11 @@ function Footer() {
                 <h1 className="text-[32px]">Next js boilerplate</h1>
                 <ul className="w-full">
                     <div className="flex flex-wrap gap-4 py-2 mb-4 justify-center">
-                        <a href="https://facebook.com/" className="p-4 border border-gray-500/[0.4] rounded-full"><Facebook01Icon /></a>
-                        <a href="https://twitter.com/" className="p-4 border border-gray-500/[0.4] rounded-full"><TwitterIcon /></a>
-                        <a href="https://instagram.com/" className="p-4 border border-gray-500/[0.4] rounded-full"><InstagramIcon /></a>
+                        <a href="https://facebook.com/" className="p-4 border border-gray-500/[0.4] rounded-full"><FacebookLogo size={18}/></a>
+                        <a href="https://twitter.com/" className="p-4 border border-gray-500/[0.4] rounded-full"><XLogo size={18}/></a>
+                        <a href="https://instagram.com/" className="p-4 border border-gray-500/[0.4] rounded-full"><InstagramLogo size={18}/></a>
                     </div>
                     <a href="mailto:suppercaseort@ennovate.com" className="block py-1 text-center">Support@boilerplate.com</a>
-                    <div className="flex flex-wrap justify-center gap-4 py-4 text-[25px]">
-                        <PaypalIcon className="text-blue-500"/>
-                        <MasterCardIcon className="text-[#FF5F00]"/>
-                        <VineSquareIcon className="text-[#1434CB]"/>
-                        <Apple01Icon />
-                    </div>
                 </ul>
                 <ul className="flex gap-[40px] justify-center">
                     <li className=""><a href="/" className="py-[5px] w-full">Home</a></li>

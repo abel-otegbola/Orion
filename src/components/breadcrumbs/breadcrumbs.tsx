@@ -1,10 +1,10 @@
-import { Home06Icon } from "hugeicons-react";
+import { House } from "@phosphor-icons/react";
 import Link from "next/link";
 
 export default function Breadcrumbs({ links }: { links: string[] }) {
     return (
         <div className="flex gap-2">
-            <Link href="/"><Home06Icon /></Link>
+            <Link href="/"><House /></Link>
             {
                 links.map((link: string, i:number) => (
                     <Link key={i} href={"/" + link}>| {link}</Link>

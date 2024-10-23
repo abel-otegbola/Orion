@@ -1,5 +1,5 @@
 'use client'
-import { CheckmarkSquare02Icon, Loading03Icon } from "hugeicons-react";
+import { CheckSquare, Spinner } from "@phosphor-icons/react";
 import { ButtonHTMLAttributes, useState } from "react";
 
 interface CheckboxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -41,7 +41,7 @@ export default function Checkbox({ className, disabled, label, onCheck, name, si
                 onBlur={() => setFocus(false)}
                 {...props}
             >
-                {animate ? <Loading03Icon size={size || 20} className="animate-spin" /> : checked ? <CheckmarkSquare02Icon size={size || 20} /> : ""}
+                {animate ? <Spinner size={size || 20} className="animate-spin" /> : checked ? <CheckSquare size={size || 20} /> : ""}
             </button>
 
             { label ? <label htmlFor={name} >{label}</label> : "" }

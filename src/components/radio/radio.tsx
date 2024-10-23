@@ -1,5 +1,5 @@
 'use client'
-import { CheckmarkCircle01Icon, Loading03Icon } from "hugeicons-react";
+import { CheckCircle, Spinner } from "@phosphor-icons/react";
 import { ButtonHTMLAttributes, useEffect, useRef, useState } from "react";
 
 interface RadioProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -50,7 +50,7 @@ export default function Radio({ className, disabled, label, onCheck, name, size,
                 style={{ height: size || "20px", width: size || "20px" }}
                 {...props}
             >
-                {animate ? <Loading03Icon size={size || 20} className="animate-spin" /> : checked ? <CheckmarkCircle01Icon size={size || 20} /> : ""}
+                {animate ? <Spinner size={size || 20} className="animate-spin" /> : checked ? <CheckCircle size={size || 20} /> : ""}
             </span>
             <span onClick={() => handleChecked()}>{label}</span>
             </label>

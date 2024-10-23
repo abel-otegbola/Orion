@@ -32,11 +32,11 @@ export default function Button({ variant, className, href, size, disabled, onCli
         >
             { 
             href ? 
-                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 py-4 px-6"> 
+                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 py-2 px-6"> 
                     { children }
                 </a>
                 :
-                <p className="flex items-center justify-center md:gap-3 gap-2 py-4 px-6">{ children }</p>
+                <p className="flex items-center justify-center md:gap-3 gap-2 py-2 px-6">{ children }</p>
             }
         </button>
     )
