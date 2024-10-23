@@ -19,7 +19,17 @@ const config: Config = {
         "input-active" : "0px 0px 12px 0px #633CFF40"
       },
       animation: {
-        "spin-slow": "spin 5s linear infinite"
+        "spin-slow": "wiggle 0.7s linear finite",
+      },
+      keyframes: {
+        wiggle: {
+          "0%": {
+            transform: "rotate(-35deg)",
+          },
+          "100%": {
+            transform: "rotate(5deg)",
+          },
+        },
       }
     },
   },
