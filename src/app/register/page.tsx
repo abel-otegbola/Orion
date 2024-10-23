@@ -40,7 +40,7 @@ export default function Registerpage() {
 
                                 <form onSubmit={handleSubmit} className="flex flex-col w-full gap-6 ">
                                     
-                                    <Input name="fullname" label="" value={values.email} onChange={handleChange} type="text" error={touched.fullname ? errors.fullname : ""} placeholder="Full name" leftIcon={<UserCircle size={16}/>}/>
+                                    <Input name="fullname" label="" value={values.fullname} onChange={handleChange} type="text" error={touched.fullname ? errors.fullname : ""} placeholder="Full name" leftIcon={<UserCircle size={16}/>}/>
 
                                     <Input name="email" label="" value={values.email} onChange={handleChange} type="email" error={touched.email ? errors.email : ""} placeholder="Email Address" leftIcon={<Envelope size={16}/>}/>
 

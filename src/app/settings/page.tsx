@@ -49,7 +49,7 @@ function Settings() {
 
     return (
         <>
-        <div className="md:flex items-start md:px-[9%] px-[3%]">
+        <div className="md:flex items-start md:px-[7.5%] px-6">
             
             <div className="md:m-2 flex-1 pt-[60px]">
                 <h2 className="flex items-center gap-3 text-[32px] font-bold pb-3">Settings</h2>

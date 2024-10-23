@@ -24,8 +24,8 @@ export default function Input({ className, disabled, label, name, value, type, o
             { label ? <label htmlFor={name} className={`text-[12px] ${focus ? "text-primary" : ""}`}>{label}</label> : "" }
 
             <div className={`flex items-center gap-1 relative rounded-lg bg-white dark:bg-dark dark:text-gray w-full border p-1 px-4 duration-500 
-                ${error && !focus ? "border-red-500 text-red-500 " : "border-black/[0.2] dark:border-gray/[0.2]"}
-                ${focus ? "border-primary dark:border-primary shadow-input-active" : ""}
+                ${error && !focus ? "border-red-500 text-red-500 " : "border-gray/[0.2] dark:border-gray-500/[0.4]"}
+                ${focus ? "border-primary dark:border-gray-500/[0.3] shadow-input-active" : ""}
                 ${className}
             `}>
                 <span className={!focus ? "opacity-[0.4]": "text-primary"}>{ leftIcon }</span>

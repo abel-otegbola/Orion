@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactNode, ButtonHTMLAttributes } from "react";
 
 export interface buttonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,7 +13,7 @@ export interface buttonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ variant, className, href, size, disabled, onClick, children, ...props }: buttonProps) {
     const variants = {
-        primary: "hover:bg-black/[0.8] bg-black dark:bg-[#000]/[0.2] text-white border border-black dark:border-none",
+        primary: "hover:bg-primary/[0.8] bg-primary text-white border border-primary",
         secondary: "hover:bg-black hover:text-white border border-black dark:border-white/[0.1]",
         tetiary: "bg-gray-500/[0.09] hover:bg-gray-500/[0.2] border border-gray-500/[0.09] "
     }
@@ -32,9 +33,9 @@ export default function Button({ variant, className, href, size, disabled, onCli
         >
             { 
             href ? 
-                <a href={href} className="flex items-center justify-center md:gap-3 gap-2 py-3 px-6"> 
+                <Link href={href} className="flex items-center justify-center md:gap-3 gap-2 py-3 px-6"> 
                     { children }
-                </a>
+                </Link>
                 :
                 <p className="flex items-center justify-center md:gap-3 gap-2 py-3 px-6">{ children }</p>
             }
