@@ -1,18 +1,97 @@
 'use client'
 
-import Skeleton from "@/components/skeleton/skeleton";
+import { ArrowRight, CheckCircle, Circle, Plus, Robot } from "@phosphor-icons/react";
+import Link from "next/link";
+
 
 export default function Home() {
   
   return (
     <main>
-      <header className="flex flex-col gap-6 md:px-[8%] px-4 min-h-[650px] justify-center items-center">
+      <header className="grid md:grid-cols-3 grid-cols-2 md:gap-6 gap-4 md:px-[8%] px-4 justify-center pt-[60px]">
 
-        <div className="md:w-[50%] flex flex-col gap-4 items-center">
-          <h1 className="md:text-[48px] text-[32px] font-semibold uppercase">Next-js Boilerplate</h1>
-          <Skeleton type="paragraph" />
+        <div className="flex flex-col gap-6 md:p-6 p-3 rounded-[12px] border border-gray-500/[0.2] bg-primary text-white">
+          <div className="flex justify-between">
+            <h1 className="md:text-lg text-md">Today&apos;s work</h1>
+            <button><Plus size={16}/></button>
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <div className="flex gap-2 items-center p-1 rounded-full w-full bg-dark/[0.09]">
+              <CheckCircle size={24} />
+              <p>Design signoff</p>
+            </div>
+            <div className="flex gap-2 items-center p-1 rounded-full w-full bg-dark/[0.09]">
+              <Circle size={24} />
+              <p>Development</p>
+            </div>
+            <div className="flex gap-2 items-center p-1 rounded-full w-full bg-dark/[0.09]">
+              <Circle size={24} />
+              <p>User Research</p>
+            </div>
+          </div>
+
+          <p className="opacity-[0.7] text-[12px] flex-1 flex items-end">Sun 20th Dec 2024</p>
         </div>
+
+        <div className="flex flex-col gap-6 md:p-6 p-3 rounded-[12px] border border-gray-500/[0.2] bg-gray-500/[0.06]">
+          <div className="flex justify-between">
+            <h1 className="md:text-lg text-md font-medium">Flashcards</h1>
+            <button><Plus size={16}/></button>
+          </div>
+
+          <div>
+            <div className="flex flex-col items-center justify-center gap-6 p-6 rounded-[12px] h-[150px] border border-gray-500/[0.2] bg-primary text-white">
+              <p>What is KISS</p>
+            </div>
+          </div>
+          
+          <p className="opacity-[0.7] text-[12px]">20 Cards</p>
+
+        </div>
+
+        <div className="flex flex-col gap-6 md:p-6 p-3 rounded-[12px] border border-gray-500/[0.2] bg-gray-500/[0.06]">
+          <div className="flex justify-between">
+            <h1 className="md:text-lg text-md font-medium">FlashBot</h1>
+            <button><Robot size={16}/></button>
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <Link href="/" className="flex justify-between gap-2 items-center p-4 rounded w-full bg-dark/[0.07]">
+              <p>Create Automatic Flashcards</p>
+              <ArrowRight />
+            </Link>
+            <Link href="/" className="flex justify-between gap-2 items-center p-4 rounded w-full bg-dark/[0.07]">
+              <p>Generate note summaries</p>
+              <ArrowRight />
+            </Link>
+            <Link href="/" className="flex justify-between gap-2 items-center p-4 rounded w-full bg-dark/[0.07]">
+              <p>Create Quiz from note</p>
+              <ArrowRight />
+            </Link>
+          </div>
+
+          <p className="opacity-[0.7] text-[12px]">3 Resources</p>
+
+        </div>
+
       </header>
+
+      <section className="grid md:grid-cols-3 grid-cols-2 md:gap-6 gap-4 md:px-[8%] px-4 justify-center items-start pt-[60px]">
+        <div className="flex flex-col gap-6 p-6 rounded-[12px] border border-gray-500/[0.2] bg-gray-500/[0.06]">
+          <div className="flex justify-between">
+            <h1 className="md:text-lg text-md  font-medium">Design Roadmap</h1>
+          </div>
+
+          <p>Design principles: color theory, typography, layout, and composition.
+
+            Practice with basic design exercises...</p>
+          
+          <p className="opacity-[0.7] text-[12px]">20 Cards</p>
+
+        </div>
+
+      </section>
       
     </main>
   );

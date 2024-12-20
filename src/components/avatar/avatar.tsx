@@ -3,9 +3,9 @@ import Image from "next/image"
 
 export default function Avatar({ user }: { user: UserData }) {
 
-    if(user?.img) {
+    if(user?.image) {
         return (
-            <Image src={user?.img || ""} alt="user" width={32} height={32} className="rounded-full" />
+            <Image src={user?.image || ""} alt="user" width={32} height={32} className="rounded-full" />
         )
     }
     else {

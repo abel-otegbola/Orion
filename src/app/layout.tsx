@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased dark:bg-dark dark:text-white/[0.9] text-[14px]`}
+        className={`${inter.className} antialiased dark:bg-dark dark:text-white/[0.9] md:text-[14px] text-[12px] md:py-0 py-[40px]`}
       >
         <Topbar />
         {children}
