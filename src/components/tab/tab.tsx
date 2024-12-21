@@ -21,7 +21,7 @@ export default function Tab ({ href, label, icon, ...props }: tabProps) {
                 ${props.className}
             `}
         >
-            <span className={`opacity-[0.6] md:text-[16px] text-[24px] duration-300 ${pathname === href ? "text-[24px]": "text-[16px]"}`}>{icon}</span>
+            <span className={`md:text-[16px] text-[24px] duration-300 ${label === "New" ? "bg-primary text-white p-3 rounded-lg": ""}`}>{icon}</span>
             <span className="md:inline hidden md:text-[12px] text-[10px] duration-500 ">{pathname === href ? 
                 <>
                     <span className="md:hidden block w-1 h-1 rounded-full bg-primary"></span>

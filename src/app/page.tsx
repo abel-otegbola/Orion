@@ -5,6 +5,7 @@ import NoteCard from "@/components/cards/noteCard";
 import Search from "@/components/search/search";
 import { CheckCircle, Circle, Plus } from "@phosphor-icons/react";
 import { CircleHalf } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -31,7 +32,7 @@ export default function Home() {
 
           <div className="flex flex-col gap-6 md:p-6 p-5 rounded-[12px] border border-gray-500/[0.2] bg-primary text-white">
             <div className="flex justify-between">
-              <h1 className="font-medium text-md">Today&apos;s work</h1>
+              <Link href="/todos" className="font-medium text-md">Today&apos;s work</Link>
               <button><Plus size={16}/></button>
             </div>
 
