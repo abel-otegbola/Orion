@@ -14,7 +14,7 @@ export default function Home() {
       <div className="md:sticky top-0 left-0 md:h-screen pt-[60px]">
         <Search placeholder="Search notes, todos and flashcards" className="bg-gray-500/[0.05] border-gray-500/[0.1]" />
 
-        <div className="flex gap-6 mt-6">
+        <div className="flex justify-between mt-6">
           {
             [
               { id: 0, title: "All" },
