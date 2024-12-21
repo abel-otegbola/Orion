@@ -2,7 +2,7 @@
 import { ReactNode, useEffect, useState } from "react"
 import Tab from "../tab/tab"
 import Link from "next/link"
-import { Bell, Gear, Heart, House, Note, UserCircle } from "@phosphor-icons/react"
+import { Bell, Gear, House, Note, Plus, UserCircle } from "@phosphor-icons/react"
 import Avatar from "../avatar/avatar"
 import { usePathname } from "next/navigation"
 import Search from "../search/search"
@@ -30,7 +30,7 @@ function Topbar() {
     const navTabs: navTab[] = [
         { id: 0, label: "Home", to: "/", icon: <House/> },
         { id: 1, label: "Notes", to: "/notes", icon: <Note/> },
-        { id: 2, label: "New", to: "/new", icon: <Heart/> },
+        { id: 2, label: "New", to: "/new", icon: <Plus/> },
         { id: 3, label: "Settings", to: "/settings", icon: <Gear/> },
         { id: 4, label: "Account", to: "/dashboard", icon: <UserCircle/> },
     ]
