@@ -24,8 +24,8 @@ export default function Search({ value, onChange, className, disabled, placehold
             `}>
                 <span className="opacity-[0.5]"><MagnifyingGlass /></span>
                 <input 
-                    className={` p-2 w-full outline-none bg-transparent
-                        ${className} 
+                    className={` p-2 w-full outline-none
+                        bg-transparent rounded-full
                         ${disabled ? "opacity-[0.25]" : ""}
                     `}
                     value={value}
