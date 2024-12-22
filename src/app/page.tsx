@@ -12,7 +12,7 @@ import { useContext } from "react";
 
 
 export default function Home() {
-  const { todos, addNewTodo, handleComplete, handleDelete } = useContext(TodosContext)
+  const { todos, handleComplete, handleDelete } = useContext(TodosContext)
   const { notes } = useContext(NotesContext)
   
   return (

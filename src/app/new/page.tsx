@@ -8,12 +8,8 @@ import { useContext, useEffect, useState } from "react";
 import { v7 } from "uuid";
 
 export default function NewNotePage () {
-  const [newNote, setNewNote] = useState<INote>({} as INote)
+  const [newNote, setNewNote] = useState<INote>({ id: v7() } as INote)
   const { addNewNote } = useContext(NotesContext)
-
-  useEffect(() => {
-    setNewNote({ ...newNote, id: v7() })
-  }, [])
 
   useEffect(() => {
     addNewNote(newNote)
