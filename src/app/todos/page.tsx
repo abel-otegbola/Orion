@@ -2,22 +2,15 @@
 import Button from "@/components/button/button";
 import Search from "@/components/search/search";
 import Textarea from "@/components/textarea/textarea";
+import { TodosContext } from "@/context/todoContext";
 import { ITodo } from "@/interface/note";
 import { CheckCircle, Circle, CircleHalf, Trash } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function TodosPage () {
-  const [todos, setTodos] = useState<ITodo[]>([ 
-    {id: "0", text: "Design Signoff", createdAt: "", updatedAt: "", status: "completed", duration: "", user: "" },
-    {id: "1", text: "Development", createdAt: "", updatedAt: "", status: "in progress", duration: "", user: "" },
-    {id: "2", text: "User Research", createdAt: "", updatedAt: "", status: "pending", duration: "", user: "" },
-  ])
+  const { todos, addNewTodo, handleComplete, handleDelete } = useContext(TodosContext)
   const [search, setSearch] = useState<ITodo[]>(todos)
   const [newTodo, setNewTodo] = useState("")
-
-  const addNewTodo = () => {
-    setTodos([ ...todos, { id: todos.length.toString(), text: newTodo, createdAt: "", updatedAt: "", status: "pending", duration: "", user: "" } ])
-  }
 
   const handleSearch = (query: string) => {
     setSearch(todos.filter(todo => todo.text.toUpperCase().indexOf(query.toUpperCase()) !== -1))
@@ -26,19 +19,6 @@ export default function TodosPage () {
   useEffect(() => {
     setSearch(todos)
   }, [todos])
-
-  const handleDelete = (id: string) => {
-    setTodos(todos.filter(todo => todo.id !== id))
-  }
-
-  const handleComplete = (id: string, status: string) => {
-    setTodos(todos.map(todo => {
-      if(todo.id === id) {
-        return { ...todo, status: status }
-      }
-      else return todo
-    }))
-  }
 
   return (
       <div className="md:px-[8%] px-6 grid md:grid-cols-2 gap-6 py-[60px]">
@@ -60,7 +40,7 @@ export default function TodosPage () {
 
           <div className="flex flex-col gap-4 items-center">
             <Textarea onChange={(e) => setNewTodo(e.target.value)} placeholder="Add new todo" />
-            <Button className="rounded-[30px]" onClick={() => addNewTodo()}>Click to add</Button>
+            <Button className="rounded-[30px]" onClick={() => addNewTodo(newTodo)}>Click to add</Button>
           </div>
       </div>
   )

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/footer";
 import Topbar from "@/components/topbar/topbar";
+import TodosProvider from "@/context/todoContext";
+import NotesProvider from "@/context/noteContext";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,14 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <TodosProvider>
+    <NotesProvider>
     <html lang="en">
       <body
         className={`${inter.className} antialiased dark:bg-dark dark:text-white/[0.9] md:text-[14px] text-[12px] md:py-0 py-[40px]`}
       >
-        <Topbar />
-        {children}
-        <Footer />
+          <Topbar />
+          {children}
+          <Footer />
       </body>
     </html>
+    </NotesProvider>
+    </TodosProvider>
   );
 }

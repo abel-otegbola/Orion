@@ -13,7 +13,7 @@ const config: Config = {
         "primary": "#6551D6",
         "secondary": "#999",
         "tetiary": "#333",
-        "dark": "#010101",
+        "dark": "#080809",
       },
       boxShadow: {
         "input-active" : "0px 0px 12px 0px #633CFF40"

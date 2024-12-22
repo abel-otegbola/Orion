@@ -3,12 +3,17 @@
 import Button from "@/components/button/button";
 import NoteCard from "@/components/cards/noteCard";
 import Search from "@/components/search/search";
-import { CheckCircle, Circle, Plus } from "@phosphor-icons/react";
+import { NotesContext } from "@/context/noteContext";
+import { TodosContext } from "@/context/todoContext";
+import { CheckCircle, Circle, Plus, X } from "@phosphor-icons/react";
 import { CircleHalf } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
+import { useContext } from "react";
 
 
 export default function Home() {
+  const { todos, addNewTodo, handleComplete, handleDelete } = useContext(TodosContext)
+  const { notes } = useContext(NotesContext)
   
   return (
     <main className="grid md:grid-cols-2 md:px-[8%] px-4 w-full gap-6">
@@ -38,15 +43,14 @@ export default function Home() {
 
             <div className="flex flex-col gap-1">
               {
-                [ 
-                  {id: 0, text: "Design Signoff", createdAt: "", updatedAt: "", status: "completed", duration: "" },
-                  {id: 1, text: "Development", createdAt: "", updatedAt: "", status: "in progress", duration: "" },
-                  {id: 2, text: "User Research", createdAt: "", updatedAt: "", status: "pending", duration: "" },
-                ].map(todo => (
-                  <div key={todo.id} className="flex gap-2 items-center p-1 rounded-full w-full bg-dark/[0.09]">
-                    { todo.status === "completed" ? <CheckCircle size={24} /> : todo.status === "in progress" ? <CircleHalf size={24} /> : <Circle size={24} /> }
+                todos.map(todo => (
+                  <div key={todo.id} className={`flex gap-2 items-center justify-between p-1 rounded-full w-full bg-black/[0.09] cursor-pointer ${ todo.status === "completed" ? "" : ""}`}>
+                  <div className="flex gap-2 items-center">
+                    <button>{ todo.status === "completed" ? <CheckCircle size={24}  onClick={() => handleComplete(todo.id, "pending")} /> : todo.status === "in progress" ? <CircleHalf size={24} onClick={() => handleComplete(todo.id, "completed")} /> : <Circle size={24} onClick={() => handleComplete(todo.id, "in progress")}  /> }</button>
                     <p>{todo.text}</p>
                   </div>
+                  <button onClick={() => handleDelete(todo.id)} className="text-white-400 p-2" ><X /></button>
+                </div>
                   ))
               }
             </div>
@@ -72,15 +76,9 @@ export default function Home() {
         </header>
       </div>
 
-      <section className="grid grid-cols-2 md:gap-6 gap-4 justify-center items-start pt-[60px]">
+      <section className="columns-2 md:gap-6 gap-4 justify-center items-start pt-[60px]">
         {
-          [
-            { id: "0", title: "Design Signoff", text: "Design principles: color theory, typography, layout, and composition. Practice with basic design exercises...", createdAt: "Sun Dec 10 2024", user: "admin", updatedAt: "" },
-            { id: "1", title: "Development", text: "Design principles: color theory, typography, layout, and composition. Practice with basic design exercises...", createdAt: "Sun Dec 10 2024", user: "admin", updatedAt: "" },
-            { id: "2", title: "Development", text: "Design principles: color theory, typography, layout, and composition. Practice with basic design exercises...", createdAt: "Sun Dec 10 2024", user: "admin", updatedAt: "" },
-            { id: "3", title: "Development", text: "Design principles: color theory, typography, layout, and composition. Practice with basic design exercises...", createdAt: "Sun Dec 10 2024", user: "admin", updatedAt: "" },
-            { id: "4", title: "Development", text: "Design principles: color theory, typography, layout, and composition. Practice with basic design exercises...", createdAt: "Sun Dec 10 2024", user: "admin", updatedAt: "" },
-          ].map(note => (
+         notes.map(note => (
             <NoteCard key={note.id} note={note} />
           ))
         }

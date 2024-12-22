@@ -43,7 +43,7 @@ function Topbar() {
 
 
     return (
-        <div className={`flex py-3 md:static fixed top-0 left-0 w-full justify-between items-center bg-white border-b border-gray-500/[0.1] dark:bg-black z-[3] ${accountPages.includes(pathname.split("/")[1]) ? "md:px-10 pl-6 pr-[100px] md:py-2 py-5" : "md:px-[8%] px-6"}`}>
+        <div className={`flex py-3 md:static fixed top-0 left-0 w-full justify-between items-center bg-white border-b border-gray-500/[0.1] dark:bg-dark z-[3] ${accountPages.includes(pathname.split("/")[1]) ? "md:px-10 pl-6 pr-[100px] md:py-2 py-5" : "md:px-[8%] px-6"}`}>
             <div className="md:w-[17%]">
                 <Link href="/" className="h-[30px] rounded flex flex-col justify-center px-2 font-bold">
                     <p>Hi 👋, Abel</p>
