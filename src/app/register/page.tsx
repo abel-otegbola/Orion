@@ -3,7 +3,7 @@ import Button from "@/components/button/button";
 import Input from "@/components/input/input";
 import { AuthContext } from "@/context/authContext";
 import { registerSchema } from "@/schema/auth";
-import { Envelope, LockKey, Spinner, UserCircle } from "@phosphor-icons/react";
+import { Envelope, LockKey, Spinner } from "@phosphor-icons/react";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useContext } from "react";
