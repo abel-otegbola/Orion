@@ -1,10 +1,12 @@
 'use client'
-import TextEditor from "@/components/editor/quillEditor";
 import Input from "@/components/input/input";
 import { NotesContext } from "@/context/noteContext";
 import { INote } from "@/interface/note";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+
+const TextEditor = dynamic(() => import("@/components/editor/quillEditor"),  { ssr: false });
 
 export default function NewNotePage () {
   const [note, setNote] = useState<INote>({} as INote)
