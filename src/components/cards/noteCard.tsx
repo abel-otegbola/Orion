@@ -1,7 +1,7 @@
 'use client'
 import { NotesContext } from "@/context/noteContext";
 import { INote } from "@/interface/note";
-import { DotsThreeVertical, Trash, X } from "@phosphor-icons/react";
+import { DotsThreeVertical, Trash } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
 
