@@ -9,7 +9,7 @@ function Footer() {
 
     return (
         <footer className={`bg-[#101012] text-white md:mt-[100px] mt-8 md:m-4 md:rounded-[20px] ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : ""}`}>
-            <div className="grid md:grid-cols-4 grid-cols-2 items-start md:gap-[30px] gap-[60px] md:px-[8%] p-8 py-[60px]">
+            <div className="grid md:grid-cols-4 grid-cols-2 max-[300px]:grid-cols-1 items-start md:gap-[30px] gap-[60px] md:px-[8%] p-8 py-[60px]">
                 <ul className="flex flex-col gap-[20px] justify-center">
                     <h2 className="font-semibold text-[16px]">NAVIGATIONS</h2>
                     <li className=""><a href="/" className="py-[5px] w-full">Home</a></li>
@@ -31,7 +31,6 @@ function Footer() {
                 </ul>
                 <div className="flex flex-col gap-4">
                     <h1 className="text-[20px] font-bold">Flash notes</h1>
-                    <a href="mailto:suppercaseort@ennovate.com" className="block py-1">Support@flashnotes.com</a>
                     <ul className="">
                         <div className="flex flex-wrap gap-4 py-2 mb-4">
                             <a href="https://facebook.com/" className="p-2 border border-gray-500/[0.4] rounded-full"><FacebookLogo size={18}/></a>

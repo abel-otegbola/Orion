@@ -28,7 +28,9 @@ export default function NotesProvider ({
     }
 
     const addNote = (newNote: INote) => {
-        setnotes([ ...notes, { id: newNote.id, title: newNote.title, text: newNote.text, createdAt: new Date(), updatedAt: new Date(), user: "" } ])
+        if(newNote.id) {
+            setnotes([ ...notes, { id: newNote.id, title: newNote.title, text: newNote.text, createdAt: new Date(), updatedAt: new Date(), user: "" } ])
+        }
     }
 
     const updateNote = (id: string, newNote: INote) => {

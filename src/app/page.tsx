@@ -20,7 +20,7 @@ export default function Home() {
       <div className="md:sticky top-0 left-0 md:h-screen pt-[60px]">
         <Search placeholder="Search notes, todos and flashcards" className="bg-gray-500/[0.05] border-gray-500/[0.1]" />
 
-        <div className="flex justify-between mt-6">
+        <div className="hidden w-[100%] gap-2 justify-between mt-6">
           {
             [
               { id: 0, title: "All" },
@@ -28,12 +28,12 @@ export default function Home() {
               { id: 2, title: "Todos" },
               { id: 3, title: "Flashnotes" },
             ].map(cat => (
-              <Button key={cat.id} variant="tetiary" className="rounded-[40px] bg-transparent" >{cat.title}</Button>
+              <Button key={cat.id} variant="tetiary" className="rounded-[40px] bg-transparent max-[400px]:text-[10px]" >{cat.title}</Button>
             ))
           }
         </div>
 
-        <header className="grid grid-cols-2 md:gap-6 gap-4 justify-center items-start py-6">
+        <header className="grid grid-cols-2 max-[350px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start py-6">
 
           <div className="flex flex-col gap-6 md:p-6 p-5 rounded-[12px] border border-gray-500/[0.2] bg-primary text-white">
             <div className="flex justify-between">
@@ -44,10 +44,10 @@ export default function Home() {
             <div className="flex flex-col gap-1">
               {
                 todos.map(todo => (
-                  <div key={todo.id} className={`flex gap-2 items-center justify-between p-1 rounded-full w-full bg-black/[0.09] cursor-pointer ${ todo.status === "completed" ? "" : ""}`}>
-                  <div className="flex gap-2 items-center">
+                  <div key={todo.id} className={`flex gap-1 items-center justify-between p-1 rounded-full w-full bg-black/[0.09] max-[400px]:text-[10px] cursor-pointer ${ todo.status === "completed" ? "" : ""}`}>
+                  <div className="flex gap-1 items-center w-[80%]">
                     <button>{ todo.status === "completed" ? <CheckCircle size={24}  onClick={() => handleComplete(todo.id, "pending")} /> : todo.status === "in progress" ? <CircleHalf size={24} onClick={() => handleComplete(todo.id, "completed")} /> : <Circle size={24} onClick={() => handleComplete(todo.id, "in progress")}  /> }</button>
-                    <p>{todo.text}</p>
+                    <p className="truncate">{todo.text}</p>
                   </div>
                   <button onClick={() => handleDelete(todo.id)} className="text-white-400 p-2" ><X /></button>
                 </div>
@@ -76,7 +76,7 @@ export default function Home() {
         </header>
       </div>
 
-      <section className="columns-2 md:gap-6 gap-4 justify-center items-start pt-[60px]">
+      <section className="columns-2 max-[350px]:columns-1 md:gap-6 gap-4 justify-center items-start pt-[60px]">
         {
          notes.map(note => (
             <NoteCard key={note.id} note={note} />
