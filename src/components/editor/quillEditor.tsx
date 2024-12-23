@@ -3,7 +3,7 @@ import "react-quill/dist/quill.snow.css";
 
 interface content {
     text: string,
-    setText: any
+    setText: (html: string) => void
 }
 
 const TextEditor = ({ text, setText }: content) => {
