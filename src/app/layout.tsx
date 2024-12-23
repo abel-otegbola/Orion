@@ -6,6 +6,7 @@ import Topbar from "@/components/topbar/topbar";
 import TodosProvider from "@/context/todoContext";
 import NotesProvider from "@/context/noteContext";
 import AuthProvider from "@/context/authContext";
+import FlashcardsProvider from "@/context/flashcardContext";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <TodosProvider>
+    <FlashcardsProvider>
     <NotesProvider>
     <html lang="en">
       <body
@@ -34,6 +36,7 @@ export default function RootLayout({
       </body>
     </html>
     </NotesProvider>
+    </FlashcardsProvider>
     </TodosProvider>
   );
 }

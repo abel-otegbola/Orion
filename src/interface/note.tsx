@@ -15,3 +15,11 @@ export interface ITodo {
     createdAt: string;
     updatedAt: string;
 }
+export interface Iflashcard {
+    id: string;
+    text: string;
+    user: string;
+    noteId: string;
+    createdAt: string;
+    updatedAt: string;
+}

@@ -30,14 +30,14 @@ export default function Button({ variant, className, href, size, disabled, onCli
         >
             { 
             href ? 
-                <Link href={href} className={`flex items-center justify-center md:gap-3 gap-2 py-3 px-6 ${className} duration-500 rounded-lg text-nowrap
+                <Link href={href} className={`flex items-center justify-center md:gap-3 gap-2 md:py-3 md:px-6 py-2 px-4 max-[350px]:text-[10px] ${className} duration-500 rounded-lg text-nowrap
             ${variants[variant || "primary"]}
             ${disabled ? "opacity-[0.25]" : ""}
             ${size === "full" ? "w-full" : "w-fit"}`}> 
                     { children }
                 </Link>
                 :
-                <p className={`flex items-center justify-center md:gap-3 gap-2 py-3 px-6 ${className} duration-500 rounded-lg text-nowrap
+                <p className={`flex items-center justify-center md:gap-3 gap-2 md:py-3 md:px-6 py-2 px-4 max-[350px]:text-[10px] ${className} duration-500 rounded-lg text-nowrap
             ${variants[variant || "primary"]}
             ${disabled ? "opacity-[0.25]" : ""}
             ${size === "full" ? "w-full" : "w-fit"}`}>{ children }</p>
