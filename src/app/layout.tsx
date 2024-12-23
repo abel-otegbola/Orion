@@ -5,6 +5,7 @@ import Footer from "@/components/footer/footer";
 import Topbar from "@/components/topbar/topbar";
 import TodosProvider from "@/context/todoContext";
 import NotesProvider from "@/context/noteContext";
+import AuthProvider from "@/context/authContext";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,11 +24,13 @@ export default function RootLayout({
     <NotesProvider>
     <html lang="en">
       <body
-        className={`${inter.className} antialiased dark:bg-dark dark:text-white/[0.9] md:text-[14px] text-[12px] md:py-0 py-[40px]`}
+        className={`${inter.className} antialiased text-dark dark:bg-dark dark:text-white/[0.9] md:text-[14px] text-[12px] md:py-0 py-[40px]`}
       >
+      <AuthProvider>
           <Topbar />
           {children}
           <Footer />
+      </AuthProvider>
       </body>
     </html>
     </NotesProvider>

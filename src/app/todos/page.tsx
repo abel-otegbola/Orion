@@ -39,8 +39,8 @@ export default function TodosPage () {
           </div>
 
           <div className="flex flex-col gap-4 items-center">
-            <Textarea onChange={(e) => setNewTodo(e.target.value)} placeholder="Add new todo" />
-            <Button className="rounded-[30px]" onClick={() => addNewTodo(newTodo)}>Click to add</Button>
+            <Textarea onChange={(e) => setNewTodo(e.target.value)} value={newTodo} placeholder="Add new todo" />
+            <Button className="rounded-[30px]" onClick={() => {addNewTodo(newTodo); setNewTodo("")}}>Click to add</Button>
           </div>
       </div>
   )

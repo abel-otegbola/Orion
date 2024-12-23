@@ -1,13 +1,15 @@
 'use client'
 import Button from "@/components/button/button";
 import Input from "@/components/input/input";
+import { AuthContext } from "@/context/authContext";
 import { registerSchema } from "@/schema/auth";
 import { Envelope, LockKey, Spinner, UserCircle } from "@phosphor-icons/react";
 import { Formik } from "formik";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function Registerpage() {
-
+    const { signUp } = useContext(AuthContext)
     
     return (
         <div className="min-h-[400px] flex mt-4 md:mx-[12%] sm:items-center justify-between">
@@ -22,10 +24,10 @@ export default function Registerpage() {
                         </div>
 
                         <Formik
-                            initialValues={{ fullname: '', email: '', password: ''}}
+                            initialValues={{ email: '', password: ''}}
                             validationSchema={registerSchema}
                             onSubmit={( values, { setSubmitting }) => {
-                                // signIn(values.email, values.password);
+                                signUp(values.email, values.password);
                                 setSubmitting(false);
                             }}
                             >
@@ -39,14 +41,12 @@ export default function Registerpage() {
                             }) => (
 
                                 <form onSubmit={handleSubmit} className="flex flex-col w-full gap-6 ">
-                                    
-                                    <Input name="fullname" label="" value={values.fullname} onChange={handleChange} type="text" error={touched.fullname ? errors.fullname : ""} placeholder="Full name" leftIcon={<UserCircle size={16}/>}/>
 
                                     <Input name="email" label="" value={values.email} onChange={handleChange} type="email" error={touched.email ? errors.email : ""} placeholder="Email Address" leftIcon={<Envelope size={16}/>}/>
 
                                     <Input name="password" label="" value={values.password} onChange={handleChange} type={"password"} error={touched.password ? errors.password : ""} placeholder="Password" leftIcon={<LockKey size={16}/>}/>
 
-                                    <Button size="full" className="">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Login"}</Button>
+                                    <Button size="full" className="">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Register"}</Button>
 
                                 </form>
                             )}
