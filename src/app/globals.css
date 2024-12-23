@@ -5,4 +5,33 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+.quill {
+  display: flex;
+  border-top: 1px solid rgb(107 114 128 / 0.1);
+  border-radius: 8px 8px 0 0;
+  flex-direction: column;
+}
+.quill .ql-toolbar.ql-snow {
+  border: 1px solid rgb(107 114 128 / 0.1);
+  order: 2;
+  border-radius: 0 0 8px 8px;
+}
+.quill .ql-container.ql-snow {
+  height: 400px;
+  border: 1px solid rgb(107 114 128 / 0.1);
+  border-top: 1px solid rgb(107 114 128 / 0.1);
+  border-radius: 8px 8px 0 0;
+  order: 1;
+}
+.quill .ql-toolbar.ql-snow .ql-formats button {
+  padding: 4px;
+  font-size: large;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: rgb(107 114 128 / 0.1);
 
+}
+.quill .ql-container.ql-snow .ql-editor.ql-blank::before {
+  color: #999;
+  font-style: normal;
+}

@@ -24,7 +24,7 @@ export default function NoteCard({ note }: { note: INote }) {
           </div>
 
           <Link href={`/note/?id=${note.id}`} className="flex justify-between">
-            <p className="text-[12px]">{note.text}</p>
+            <div className="text-[12px]" dangerouslySetInnerHTML={{ __html: note.text }} ></div>
           </Link>
           
           <Link href={`/note/?id=${note.id}`} className="flex justify-between">
