@@ -98,7 +98,7 @@ export default function Slider({ images }: { images: Iflashcard[] }) {
     };
 
     return (
-        <div className="relative flex items-center justify-center md:w-[86%] w-[94%] mx-auto mt-4 overflow-hidden">
+        <div className="relative flex items-center justify-center md:w-[98%] w-[100%] mx-auto mt-4 overflow-hidden">
             <div
                 className="flex gap-[3%] md:h-[460px] h-[300px]"
                 onMouseDown={handleDragStart}
@@ -134,7 +134,7 @@ export default function Slider({ images }: { images: Iflashcard[] }) {
                         >
                             <div key={_.id} className={`absolute top-0 left-0 min-w-[200px] w-full flex flex-col h-full gap-2 items-center justify-between md:p-6 p-4 rounded-lg w-full bg-primary text-white cursor-pointer`}>
                                 <div className="flex justify-between items-center w-full ">
-                                    <p>{offset + 1}/{images.length}</p>
+                                    <p>{slideIndex + 1}/{images.length}</p>
                                 </div>
                                 <div className="flex-1 flex gap-2 items-center">
                                     <p>{images[slideIndex]?.text}</p>
