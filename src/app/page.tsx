@@ -3,16 +3,19 @@
 import Button from "@/components/button/button";
 import NoteCard from "@/components/cards/noteCard";
 import Search from "@/components/search/search";
+import Slider from "@/components/slider/slider";
+import Todo from "@/components/todo/todo";
+import { flashcardsContext } from "@/context/flashcardContext";
 import { NotesContext } from "@/context/noteContext";
 import { TodosContext } from "@/context/todoContext";
-import { CheckCircle, Circle, Plus, X } from "@phosphor-icons/react";
-import { CircleHalf } from "@phosphor-icons/react/dist/ssr";
+import { Plus } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useContext } from "react";
 
 
 export default function Home() {
-  const { todos, handleComplete, handleDelete } = useContext(TodosContext)
+  const { todos } = useContext(TodosContext)
+  const { flashcards } = useContext(flashcardsContext)
   const { notes } = useContext(NotesContext)
   
   return (
@@ -41,16 +44,10 @@ export default function Home() {
               <button><Plus size={16}/></button>
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 text-[12px]">
               {
-                todos.slice(0, 5).map(todo => (
-                  <div key={todo.id} className={`flex gap-1 items-center justify-between p-1 rounded-full w-full bg-black/[0.09] max-[400px]:text-[10px] cursor-pointer ${ todo.status === "completed" ? "" : ""}`}>
-                  <div className="flex gap-1 items-center w-[80%]">
-                    <button>{ todo.status === "completed" ? <CheckCircle size={24}  onClick={() => handleComplete(todo.id, "pending")} /> : todo.status === "in progress" ? <CircleHalf size={24} onClick={() => handleComplete(todo.id, "completed")} /> : <Circle size={24} onClick={() => handleComplete(todo.id, "in progress")}  /> }</button>
-                    <p className="truncate">{todo.text}</p>
-                  </div>
-                  <button onClick={() => handleDelete(todo.id)} className="text-white-400 p-2" ><X /></button>
-                </div>
+                todos.slice(0, 4).map(todo => (
+                  <Todo key={todo.id} todo={todo} />
                   ))
               }
             </div>
@@ -64,10 +61,8 @@ export default function Home() {
               <button><Plus size={16}/></button>
             </div>
 
-            <div>
-              <div className="flex flex-col items-center justify-center gap-6 p-6 rounded-[12px] h-[150px] border border-gray-500/[0.2] bg-primary text-white">
-                <p>What is KISS</p>
-              </div>
+            <div className="relative w-full flex flex-col gap-2 h-[150px]">
+              <Slider images={flashcards} />
             </div>
             
             <p className="opacity-[0.7] text-[12px] p-1 flex-1 flex items-end">20 Cards</p>

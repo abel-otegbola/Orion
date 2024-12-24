@@ -7,6 +7,7 @@ export interface INote {
     updatedAt: string;
 }
 export interface ITodo {
+    [ x: string ]: string,
     id: string;
     text: string;
     user: string;
