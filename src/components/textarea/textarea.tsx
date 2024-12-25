@@ -20,7 +20,7 @@ export default function Textarea({ className, disabled, label, name, value, onCh
         <div className="flex flex-col w-full gap-1">
             { label ? <label htmlFor={name} className={`text-[10px] ${focus ? "text-primary" : ""}`}>{label}</label> : "" }
 
-            <div className={`flex items-center gap-2 relative rounded-[4px] bg-white dark:bg-black dark:text-gray w-full border p-1 px-1 duration-500 
+            <div className={`flex items-center gap-2 relative rounded-lg bg-white dark:bg-primary/[0.04] dark:text-gray w-full border p-1 px-1 duration-500 
                 ${error && !focus ? "border-red text-red " : "border-gray/[0.3] dark:border-gray-500/[0.4]"}
                 ${focus ? "border-primary dark:border-primary shadow-input-active" : ""}
                 ${className}

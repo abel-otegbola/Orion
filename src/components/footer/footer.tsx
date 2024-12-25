@@ -8,7 +8,7 @@ function Footer() {
     const pathname  = usePathname()
 
     return (
-        <footer className={`bg-gray-500/[0.06] border border-gray-500/[0.1] dark:bg-primary/[0.04] dark:text-white md:mt-[100px] mt-8 md:my-4 md:mx-[8%] md:rounded-[20px] ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : ""}`}>
+        <footer className={`bg-gray-500/[0.06] border border-gray-500/[0.1] dark:bg-primary/[0.04] dark:text-white md:mt-[100px] mt-8 md:my-4 md:mx-10 md:rounded-[20px] ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : ""}`}>
             <div className="grid md:grid-cols-4 grid-cols-2 max-[300px]:grid-cols-1 items-start md:gap-[30px] gap-[60px] md:px-[8%] p-8 py-[60px]">
                 <ul className="flex flex-col gap-[16px] text-[12px] justify-center">
                     <h2 className="font-semibold text-[14px] pb-2">Products</h2>

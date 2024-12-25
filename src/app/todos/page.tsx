@@ -28,9 +28,9 @@ export default function TodosPage () {
   }, [user?.email])
 
   return (
-      <div className="md:px-[8%] px-6 grid md:grid-cols-2 gap-6 py-[60px]">
+      <div className="md:px-10 px-6 flex md:flex-nowrap flex-wrap gap-6 py-[60px]">
 
-          <div className="flex flex-col gap-2">
+          <div className="md:w-[70%] w-full flex flex-col gap-2">
             <Search placeholder="Search todos" onChange={(e) => handleSearch(e)} className="bg-gray-500/[0.05] border-gray-500/[0.1] mb-4" />
             {
               search.map(todo => (
@@ -39,9 +39,9 @@ export default function TodosPage () {
             }
           </div>
 
-          <div className="flex flex-col gap-4 items-center">
+          <div className="md:sticky top-4 right-0 md:w-[30%] w-full h-fit flex flex-col gap-4 items-center p-4 border border-gray-500/[0.1] rounded-[12px]">
             <Textarea onChange={(e) => setNewTodo(e.target.value)} value={newTodo} placeholder="Add new todo" />
-            <Button className="rounded-[30px]" onClick={() => {addNewTodo(newTodo, user?.email || ""); setNewTodo("")}}>Click to add</Button>
+            <Button className="rounded-[30px]" size="full" onClick={() => {addNewTodo(newTodo, user?.email || ""); setNewTodo("")}}>Click to add</Button>
           </div>
       </div>
   )

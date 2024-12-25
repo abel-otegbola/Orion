@@ -19,7 +19,7 @@ export default function Home() {
   const { notes } = useContext(NotesContext)
   
   return (
-    <main className="grid md:grid-cols-2 md:px-[8%] px-4 w-full gap-6">
+    <main className="grid md:grid-cols-2 md:px-10 px-6 w-full gap-6">
       <div className="md:sticky top-0 left-0 md:h-screen pt-[60px]">
         <Search placeholder="Search notes, todos and flashcards" className="bg-gray-500/[0.05] border-gray-500/[0.1]" />
 

@@ -37,7 +37,7 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
         .then(() => {
             setPopup({ type: "success", msg: "Login Successful" })
             setLoading(false)
-            router.push("/dashboard")
+            router.push("/")
         })
         .catch((error) => {
             setPopup({ type: "error", msg: formatError(error.message) })
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
         createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
             setLoading(false)
-            router.push("/dashboard")
+            router.push("/")
         })
         .catch((error) => {
             setPopup({ type: "error", msg: formatError(error.message) })
