@@ -3,14 +3,15 @@ import { useLocalStorage } from "@/customHooks/useLocaStorage"
 import { db } from "@/firebase/firebase"
 import { INote } from "@/interface/note"
 import { addDoc, AddPrefixToKeys, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
-import { createContext } from "react"
+import { createContext, useContext, useEffect } from "react"
+import { AuthContext } from "./authContext"
 
 type notesContextProps = {
     notes: INote[];
-    addNote: (newNote: INote, user: string) => void;
-    updateNote: (id: string, newNote: INote, user: string) => void;
-    getAllNotes: (user: string) => void;
-    deleteNote: (id: string, user: string) => void
+    addNote: (newNote: INote) => void;
+    updateNote: (id: string, newNote: INote) => void;
+    getAllNotes: () => void;
+    deleteNote: (id: string) => void
 }
 
 export const NotesContext = createContext({} as notesContextProps)
@@ -21,27 +22,26 @@ export default function NotesProvider ({
     children: React.ReactNode;
   }>) {
     const [notes, setnotes] = useLocalStorage("notes", [])
+    const { user } = useContext(AuthContext)
 
-    const addNote = async (newNote: INote, user: string) => {
-        if(newNote.id && notes.map((note: INote) => note.id).indexOf(newNote.id) === -1) {
-            if(user === "") {
-                setnotes([ ...notes, { id: newNote.id, title: newNote.title, text: newNote.text, createdAt: new Date().toDateString(), updatedAt: new Date().toDateString(), user: "" } ])
+    const addNote = async (newNote: INote) => {
+        if(!user) {
+            setnotes([ ...notes, { title: newNote.title, text: newNote.text, createdAt: new Date().toDateString(), updatedAt: new Date().toDateString(), user: "" } ])
+        }
+        else {
+            try {
+                const docRef = await addDoc(collection(db, "notes"), { _id: newNote._id, title: newNote.title, text: newNote.text, createdAt: new Date().toDateString(), updatedAt: new Date().toDateString(), user: user?.email });
+                console.log(docRef)
+                getAllNotes()
             }
-            else {
-                try {
-                    const docRef = await addDoc(collection(db, "notes"), { id: newNote.id, title: newNote.title, text: newNote.text, createdAt: new Date().toDateString(), updatedAt: new Date().toDateString(), user });
-                    console.log(docRef)
-                    getAllNotes(user)
-                }
-                catch(e) {
-                    console.log(e)
-                }
+            catch(e) {
+                console.log(e)
             }
         }
     }
 
-    const updateNote = async (id: string, data: AddPrefixToKeys<string, INote>, user: string) => {
-        if(user === "") {
+    const updateNote = async (id: string, data: AddPrefixToKeys<string, INote>) => {
+        if(!user) {
             setnotes(notes.map((note: INote) => {
                 if(note.id === id) {
                     return data
@@ -53,7 +53,7 @@ export default function NotesProvider ({
             try {
                 const docRef = await updateDoc(doc(db, "notes", id), data);
                 console.log(docRef)
-                getAllNotes(user)
+                getAllNotes()
             }
             catch(e) {
                 console.log(e)
@@ -61,12 +61,12 @@ export default function NotesProvider ({
         }
     }
 
-    const getAllNotes = async (user: string) => {
+    const getAllNotes = async () => {
         try {
-            const arr: {id: string, _id: string}[] = []
-            const querySnapshot = await getDocs(query(collection(db, "notes"), where("user", "==", user)));
+            const arr: {id: string}[] = []
+            const querySnapshot = await getDocs(query(collection(db, "notes"), where("user", "==", user?.email)));
             querySnapshot.forEach((doc) => {
-                arr.push({...doc.data(), id: doc.data().id, _id: doc.id})
+                arr.push({...doc.data(), id: doc.id})
             })
             setnotes(arr)
         }
@@ -75,22 +75,26 @@ export default function NotesProvider ({
         }
     }
 
-    const deleteNote = async (id: string, user: string) => {
-        if(user === "") {
+    const deleteNote = async (id: string) => {
+        if(!user) {
             setnotes(notes.filter((note: INote) => note.id !== id))
         }
         else {
             try {
                 const docRef = await deleteDoc(doc(db, "notes", id));
                 console.log(docRef)
-                getAllNotes(user)
+                getAllNotes()
             }
             catch(e) {
                 console.log(e)
             }
-        }
-        
+        }        
     }
+
+    useEffect(() => {
+        getAllNotes()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user])
 
     return (
         <NotesContext.Provider value={{ notes, addNote, updateNote, getAllNotes, deleteNote }}>

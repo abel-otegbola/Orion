@@ -1,6 +1,5 @@
 'use client'
 import Input from "@/components/input/input";
-import { AuthContext } from "@/context/authContext";
 import { NotesContext } from "@/context/noteContext";
 import { INote } from "@/interface/note";
 import dynamic from "next/dynamic";
@@ -12,12 +11,11 @@ const TextEditor = dynamic(() => import("@/components/editor/quillEditor"),  { s
 export default function NewNotePage () {
   const [note, setNote] = useState<INote>({} as INote)
   const { updateNote, notes } = useContext(NotesContext)
-  const { user } = useContext(AuthContext)
   const searchParams = useSearchParams()
   const id = searchParams.get("id")
 
   useEffect(() => {
-    updateNote(note._id, note, user?.email || "")
+    updateNote(note?.id, note)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [note])
 

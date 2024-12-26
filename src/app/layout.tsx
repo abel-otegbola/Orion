@@ -23,19 +23,19 @@ export default function RootLayout({
   return (
     <TodosProvider>
     <FlashcardsProvider>
-    <NotesProvider>
     <html lang="en">
       <body
         className={`${inter.className} antialiased text-[#37353c] dark:bg-dark dark:text-white/[0.9] md:text-[14px] text-[12px] md:py-0 py-[40px]`}
       >
       <AuthProvider>
+        <NotesProvider>
           <Topbar />
           {children}
           <Footer />
+        </NotesProvider>
       </AuthProvider>
       </body>
     </html>
-    </NotesProvider>
     </FlashcardsProvider>
     </TodosProvider>
   );
