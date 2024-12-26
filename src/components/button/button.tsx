@@ -20,7 +20,7 @@ export default function Button({ variant, className, href, size, disabled, onCli
 
     return (
         <button className={`
-             ${size === "full" ? "w-full" : "w-fit"}
+             ${size === "full" ? "w-full" : "w-fit"} text-nowrap
         `}
         {...props}
         name="Button"

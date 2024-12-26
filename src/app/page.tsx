@@ -19,8 +19,8 @@ export default function Home() {
   const { notes } = useContext(NotesContext)
   
   return (
-    <main className="grid md:grid-cols-2 md:px-10 px-6 w-full gap-6">
-      <div className="md:sticky top-0 left-0 md:h-screen pt-[60px]">
+    <main className="grid md:grid-cols-2 md:px-10 px-6 w-full gap-6 py-[60px]">
+      <div className="md:sticky top-0 left-0 md:h-screen">
         <Search placeholder="Search notes, todos and flashcards" className="bg-gray-500/[0.05] border-gray-500/[0.1]" />
 
         <div className="hidden w-full overflow-x-auto gap-2 justify-between mt-6">
@@ -36,7 +36,7 @@ export default function Home() {
           }
         </div>
 
-        <header className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-2 max-[350px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start py-6">
+        <header className="grid xl:grid-cols-2 md:grid-cols-1 grid-cols-2 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start py-6">
 
           <div className="flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] bg-primary text-white">
             <div className="flex justify-between p-1">
@@ -71,7 +71,7 @@ export default function Home() {
         </header>
       </div>
 
-      <section className="lg:columns-2 md:columns-1 columns-2 max-[350px]:columns-1 md:gap-6 gap-4 justify-center items-start pt-[60px]">
+      <section className="lg:columns-2 md:columns-1 columns-2 max-[350px]:columns-1 md:gap-6 gap-4 justify-center items-start">
         {
          notes.map(note => (
             <NoteCard key={note.id} note={note} />
