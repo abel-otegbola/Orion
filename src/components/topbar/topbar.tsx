@@ -10,6 +10,7 @@ import Menu from "../navMenu/navMenu"
 import { NoteBlank } from "@phosphor-icons/react/dist/ssr"
 import { AuthContext } from "@/context/authContext"
 import Button from "../button/button"
+import { v7 } from "uuid"
 
 type navTab =  {
     id: number | string,
@@ -60,7 +61,7 @@ function Topbar() {
 
             <div className="flex gap-8 items-center flex-1">
                 <Search placeholder="Search notes" className="md:flex hidden" />
-                <Button href="/new" className="max-[400px]:hidden">New note</Button>
+                <Button href={`/new?id=${v7()}`} className="max-[400px]:hidden">New note</Button>
                 <div ref={closeMenu} className={`relative`}>
                     <button onClick={() => setOpen(!open)} className="h-[40px] w-[40px]">
                         <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email?.split("@")[0] || "user" }} />

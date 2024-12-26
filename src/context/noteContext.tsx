@@ -23,7 +23,7 @@ export default function NotesProvider ({
     const [notes, setnotes] = useLocalStorage("notes", [])
 
     const addNote = async (newNote: INote, user: string) => {
-        if(newNote.id) {
+        if(newNote.id && notes.map((note: INote) => note.id).indexOf(newNote.id) === -1) {
             if(user === "") {
                 setnotes([ ...notes, { id: newNote.id, title: newNote.title, text: newNote.text, createdAt: new Date().toDateString(), updatedAt: new Date().toDateString(), user: "" } ])
             }
@@ -63,12 +63,11 @@ export default function NotesProvider ({
 
     const getAllNotes = async (user: string) => {
         try {
-            const arr: {id: string}[] = []
+            const arr: {id: string, _id: string}[] = []
             const querySnapshot = await getDocs(query(collection(db, "notes"), where("user", "==", user)));
             querySnapshot.forEach((doc) => {
-                arr.push({...doc.data(), id: doc.data().id})
+                arr.push({...doc.data(), id: doc.data().id, _id: doc.id})
             })
-            console.log(arr)
             setnotes(arr)
         }
         catch(e) {

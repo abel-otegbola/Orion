@@ -15,7 +15,7 @@ export default function NoteCard({ note }: { note: INote }) {
         <div className="flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] bg-gray-500/[0.06] mb-4 break-inside-avoid">
           <div className="relative flex justify-between">
             <Link href={`/note/?id=${note.id}`}  className="text-[14px] font-semibold">{note.title}</Link>
-            <button onClick={() => deleteNote(note.id, user?.email || "")} className="opacity-[0.6]"><Trash size={16} /></button>
+            <button onClick={() => deleteNote(note._id, user?.email || "")} className="opacity-[0.6]"><Trash size={16} /></button>
           </div>
 
           <Link href={`/note/?id=${note.id}`} className="flex justify-between">

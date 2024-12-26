@@ -5,18 +5,25 @@ import NoteCard from "@/components/cards/noteCard";
 import Search from "@/components/search/search";
 import Slider from "@/components/slider/slider";
 import Todo from "@/components/todo/todo";
+import { AuthContext } from "@/context/authContext";
 import { flashcardsContext } from "@/context/flashcardContext";
 import { NotesContext } from "@/context/noteContext";
 import { TodosContext } from "@/context/todoContext";
 import { Plus } from "@phosphor-icons/react";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 
 export default function Home() {
   const { todos } = useContext(TodosContext)
   const { flashcards } = useContext(flashcardsContext)
-  const { notes } = useContext(NotesContext)
+  const { notes, getAllNotes } = useContext(NotesContext)
+  const { user } = useContext(AuthContext)
+
+  useEffect(() => {
+    getAllNotes(user?.email || "")
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   
   return (
     <main className="grid md:grid-cols-2 md:px-10 px-6 w-full gap-6">

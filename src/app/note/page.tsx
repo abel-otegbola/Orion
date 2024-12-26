@@ -17,21 +17,28 @@ export default function NewNotePage () {
   const id = searchParams.get("id")
 
   useEffect(() => {
-    updateNote(note.id, note, user?.email || "")
+    updateNote(note._id, note, user?.email || "")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [note])
 
   useEffect(() => {
     setNote(notes.filter((note: INote) => note.id === id)[0])
-  }, [id, notes])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
   return (
-      <div className="md:px-[8%] px-6 grid md:grid-cols-2 gap-6 py-[60px]">
-          <div className="flex flex-col gap-4 items-center">
-            <Input onBlur={(e) => setNote({ ...note, title: e.target.value })} value={note.title} placeholder="Title" className="border-gray-500/[0.09] rounded"/>
+    <div className="md:px-10 px-6 flex md:flex-nowrap flex-wrap gap-6 py-[60px]">
+        <div className="md:w-[70%] w-full flex flex-col gap-4 items-center">
+            <Input onBlur={(e) => setNote({ ...note, title: e.target.value })} defaultValue={note?.title} placeholder="Title" className="border-gray-500/[0.09] rounded"/>
             
-            <TextEditor text={note.text} setText={(value: string) => setNote({ ...note, text: value })} />
-          </div>
+            <TextEditor text={note?.text} setText={(value: string) => setNote({ ...note, text: value })} />
+            
+        </div>
+
+        <div className="md:w-[30%] w-full p-4 rounded-lg border border-gray-500/[0.2]">
+          <h1>AI Summary</h1>
+          <h1>Create Flashcards</h1>
+        </div>
       </div>
   )
 }
