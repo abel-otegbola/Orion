@@ -16,8 +16,8 @@ export default function Tab ({ href, label, icon, ...props }: tabProps) {
     return (
         <Link
             href={href}
-            className={`flex items-center justify-center md:flex-row flex-col md:gap-1 gap-2 h-[32px] p-[8px_16px] hover:text-primary font-light rounded-lg duration-500
-                ${pathname === href ? "text-primary" : "hover:bg-primary/[0.02]"}
+            className={`flex items-center justify-center md:flex-row flex-col md:gap-1 gap-2 h-[32px] p-[8px_16px] hover:text-primary rounded-lg duration-500
+                ${pathname === href ? "text-black font-bold bg-primary/[0.03]" : "hover:bg-primary/[0.02]  font-light"}
                 ${props.className}
             `}
         >

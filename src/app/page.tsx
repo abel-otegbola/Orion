@@ -1,84 +1,50 @@
 'use client'
-
 import Button from "@/components/button/button";
-import NoteCard from "@/components/cards/noteCard";
-import Search from "@/components/search/search";
-import Slider from "@/components/slider/slider";
-import Todo from "@/components/todo/todo";
-import { flashcardsContext } from "@/context/flashcardContext";
-import { NotesContext } from "@/context/noteContext";
-import { TodosContext } from "@/context/todoContext";
-import { Plus } from "@phosphor-icons/react";
-import Link from "next/link";
-import { useContext } from "react";
-
+import { Star } from "@phosphor-icons/react";
+import Image from "next/image"
 
 export default function Home() {
-  const { todos } = useContext(TodosContext)
-  const { flashcards } = useContext(flashcardsContext)
-  const { notes } = useContext(NotesContext)
   
   return (
-    <main className="grid md:grid-cols-2 md:px-10 px-6 w-full gap-6 py-[60px]">
-      <div className="md:sticky top-0 left-0 md:h-screen">
-        <Search placeholder="Search notes, todos and flashcards" className="bg-gray-500/[0.05] border-gray-500/[0.1]" />
+    <main className="">
 
-        <div className="hidden w-full overflow-x-auto gap-2 justify-between mt-6">
-          {
-            [
-              { id: 0, title: "All" },
-              { id: 1, title: "Important" },
-              { id: 2, title: "Todos" },
-              { id: 3, title: "Flashnotes" },
-            ].map(cat => (
-              <Button key={cat.id} variant="tetiary" className="rounded-[40px] bg-transparent max-[400px]:text-[10px]" >{cat.title}</Button>
-            ))
-          }
-        </div>
-
-        <header className="grid xl:grid-cols-2 md:grid-cols-1 grid-cols-2 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start py-6">
-
-          <div className="flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] bg-primary text-white">
-            <div className="flex justify-between p-1">
-              <Link href="/todos" className="font-semibold text-md">Today&apos;s work</Link>
-              <button><Plus size={16}/></button>
+        <header className="pt-16 min-h-screen bg-center bg-cover" style={{ backgroundImage: `url("/bg.svg")` }}>
+          <div className="flex flex-col gap-6 items-center md:p-[40px] p-6 md:w-[70%] mx-auto">
+            <div className="flex items-center p-1 border border-gray-500/[0.2] rounded text-[12px]">
+              <p className="p-2 px-4 rounded bg-primary/[0.2] text-primary">An idea?</p>
+              <p className="px-4">Envision It, Organize It, Achieve It</p>
             </div>
-
-            <div className="flex flex-col gap-1 text-[12px]">
-              {
-                todos.slice(0, 4).map(todo => (
-                  <Todo key={todo.id} todo={todo} />
-                  ))
-              }
+            <h1 className="md:text-[60px] text-[32px] font-bold text-center leading-[130%]">Manage Your Notes, Tasks and Projects <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB2E96] to-[#BC51D6]">Efficiently</span></h1>
+            <p className="leading-[25px] text-center">Effortlessly organize your tasks, streamline your workflows, and enhance collaboration with our all-in-one solution. Whether you&apos;re managing personal projects, working solo, or teaming up with colleagues, our platform helps you stay focused, productive, and on top of your game.</p>
+            <div className="flex gap-4">
+              <Button >Learn more</Button>
+              <Button variant="secondary" >Get Started</Button>
             </div>
-
-            <p className="opacity-[0.7] text-[12px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
           </div>
 
-          <div className="flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] bg-gray-500/[0.06]">
-            <div className="flex justify-between p-1">
-              <Link href={"/flashcards"} className="font-medium text-md font-semibold">Flashcards</Link>
-              <button><Plus size={16}/></button>
-            </div>
-
-            <div className="relative w-full flex flex-col gap-2 h-[150px]">
-              <Slider images={flashcards} />
-            </div>
-            
-            <p className="opacity-[0.7] text-[12px] p-1 flex-1 flex items-end">20 Cards</p>
-
+          <div className="flex flex-col items-center">
+            <Image src={"/hero-dashboard.png"} alt="hero dashboard" width={1000} height={600} className="" />
           </div>
         </header>
-      </div>
 
-      <section className="lg:columns-2 md:columns-1 columns-2 max-[350px]:columns-1 md:gap-6 gap-4 justify-center items-start">
-        {
-         notes.map(note => (
-            <NoteCard key={note.id} note={note} />
-          ))
-        }
+        <section className="grid md:grid-cols-2 gap-[10%] md:p-[8%] p-6">
+          <div>
+            <p className="flex items-center gap-2 p-2 px-4 rounded bg-primary/[0.2] rounded-full text-primary w-fit"><Star weight="fill" className="text-primary" />features</p>
+            <p className="md:text-[40px] text-[28px] font-bold mt-8"><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB2E96] to-[#BC51D6]">Seamlessly</span> Keep Everything in One Place</p>
+          </div>
+          <div className="flex flex-col justify-between gap-6">
+            <p>This excellent note-management app is the best for students, developers, professionals and experts in every field.</p>
+            <Button>Learn more</Button>
+          </div>
+        </section>
 
-      </section>
+        <section className="grid md:grid-cols-2 gap-4 md:p-[8%] p-6">
+          <Image src={"/services-1.png"} alt="hero dashboard" width={1000} height={600} className="" />
+          <div className="flex flex-col gap-4">
+            <Image src={"/services-2.png"} alt="hero dashboard" width={1000} height={600} className="" />
+            <Image src={"/services-3.png"} alt="hero dashboard" width={1000} height={600} className="" />
+          </div>
+        </section>
       
     </main>
   );
