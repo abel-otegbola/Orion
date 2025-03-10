@@ -103,7 +103,7 @@ export default function Home() {
         </section>
       </div>
 
-      <section className="">
+      <section className="mt-12">
         <div className="bg-white dark:bg-dark h-full">
             <h2 className="flex items-center gap-3 font-bold text-[20px]">
                 <p className={``}><File width={24} /> </p>

@@ -13,7 +13,7 @@ export function NotesTable({ data, fields }: { data: INote[], fields: string[] }
 
     return (
         <div className="w-[100%] py-2 overflow-x-auto">
-            <table className="table-auto rounded-lg sm:text-[10px] text-[8px] overflow-hidden text-left w-full min-w-[250px]">
+            <table className="table-auto rounded sm:text-[10px] text-[8px] overflow-hidden text-left w-full min-w-[250px]">
                 <thead className="border border-gray-500/[0.2] dark:border-gray-500/[0.08] ">
                     <tr className="bg-primary/[0.08]">
                     {

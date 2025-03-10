@@ -15,7 +15,7 @@ export default function TodosPage () {
   const { user } = useContext(AuthContext)
 
   const handleSearch = (query: string) => {
-    setSearch(todos.filter(todo => todo.text.toUpperCase().indexOf(query.toUpperCase()) !== -1))
+    setSearch(todos.filter(todo => todo.title.toUpperCase().indexOf(query.toUpperCase()) !== -1))
   }
 
   useEffect(() => {

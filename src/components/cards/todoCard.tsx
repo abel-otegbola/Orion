@@ -21,9 +21,9 @@ export default function TodoCard({ todo, i }: { todo: ITodo, i: number }) {
         <Link href="/todos" className="font-semibold text-[10px]">{todo.description}</Link>
       </div>
       <div className="flex flex-1 items-end">
-        <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black bg-white"}`}></span>
-        <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black bg-white"} -ml-[6px]`}></span>
-        <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black bg-white"} -ml-[6px]`}></span>
+        <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black dark:border-gray-500 bg-white"}`}></span>
+        <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black dark:border-gray-500 bg-white"} -ml-[6px]`}></span>
+        <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black dark:border-gray-500 bg-white"} -ml-[6px]`}></span>
       </div>
     </div>
     )
