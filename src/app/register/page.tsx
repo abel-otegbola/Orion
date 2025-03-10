@@ -13,8 +13,6 @@ export default function Registerpage() {
     
     return (
         <div className="min-h-[400px] flex mt-4 md:mx-[12%] sm:items-center justify-between">
-
-            <div className="flex w-full">
                 <div className="sm:w-[550px] mx-auto w-full p-12">
                     
                     <div className="flex flex-col items-center gap-6 md:p-[5%] p-2">
@@ -46,7 +44,7 @@ export default function Registerpage() {
 
                                     <Input name="password" label="" value={values.password} onChange={handleChange} type={"password"} error={touched.password ? errors.password : ""} placeholder="Password" leftIcon={<LockKey size={16}/>}/>
 
-                                    <Button size="full" className="">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Register"}</Button>
+                                    <Button size="full" className="py-3">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Register"}</Button>
 
                                 </form>
                             )}
@@ -55,8 +53,6 @@ export default function Registerpage() {
                         <p className="text-center">Already have an account? <Link href={"/login"} className="text-primary">Sign in</Link></p>
                     </div>
                 </div>
-            </div>
-
         </div>
     )
 }

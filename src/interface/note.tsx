@@ -9,14 +9,15 @@ export interface INote {
     updatedAt: string;
 }
 export interface ITodo {
-    [ x: string ]: string,
+    [ x: string ]: string | undefined,
     id: string;
-    text: string;
-    user: string;
-    status: string;
-    duration: string;
-    createdAt: string;
-    updatedAt: string;
+    title: string;
+    description: string;
+    user?: string;
+    status?: string;
+    duration?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 export interface Iflashcard {
     id: string;

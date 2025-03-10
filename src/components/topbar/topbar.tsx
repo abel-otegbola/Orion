@@ -10,6 +10,7 @@ import { NoteBlank } from "@phosphor-icons/react/dist/ssr"
 import { AuthContext } from "@/context/authContext"
 import Button from "../button/button"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 type navTab =  {
     id: number | string,
@@ -38,9 +39,10 @@ function Topbar() {
     ]
 
     const closeMenu = useOutsideClick(setOpen, false)
+    const pathname  = usePathname()
 
     return (
-        <div className={`flex fixed top-0 bg-white/[0.7] backdrop-blur-sm left-0 w-full justify-between items-center z-[3] md:px-[8%] px-6 md:py-1 py-3`}>
+        <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : "md:px-[8%] px-6"}`}>
             <div className="md:w-[27%]">
                 <Link href="/" className="h-[30px] rounded flex flex-col justify-center px-2 font-bold">
                     <Image src="/logo.svg" alt="logo" width={82} height={40} />

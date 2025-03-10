@@ -21,10 +21,10 @@ export default function Loginpage() {
                     <div className="flex flex-col items-center gap-6 md:p-[5%] p-2">
                         <div>
                             <h1 className="font-bold text-[32px] text-center">Welcome</h1>
-                            <p className="mt-2 mb-3 text-center">Add your details below to get back into the app</p>
+                            <p className="mt-2 mb-3 text-center">Sign in with your credentials to get back into the app</p>
                         </div>
 
-                        <Button size="full" variant="tetiary" onClick={() => socialSignIn("Google")} className=""><GoogleIcon width={20} /></Button>
+                        <Button size="full" onClick={() => socialSignIn("Google")} className=""><GoogleIcon width={20} /></Button>
 
                         <p>OR</p>
 
@@ -51,7 +51,7 @@ export default function Loginpage() {
 
                                     <Input name="password" label="" value={values.password} onChange={handleChange} type={"password"} error={touched.password ? errors.password : ""} placeholder="Password" leftIcon={<LockKey size={16}/>}/>
 
-                                    <Button size="full" className="">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Login"}</Button>
+                                    <Button size="full" className="py-3">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Login"}</Button>
 
                                 </form>
                             )}

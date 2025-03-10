@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="">
 
-        <header className="pt-16 min-h-screen bg-center bg-cover" style={{ backgroundImage: `url("/bg.svg")` }}>
+        <header className="pt-16 min-h-screen bg-center bg-cover dark:bg-dark" style={{ backgroundImage: `url("/bg.svg")` }}>
           <div className="flex flex-col gap-6 items-center md:p-[40px] p-6 md:w-[70%] mx-auto">
             <div className="flex items-center p-1 border border-gray-500/[0.2] rounded text-[12px]">
               <p className="p-2 px-4 rounded bg-primary/[0.2] text-primary">An idea?</p>
@@ -17,8 +17,8 @@ export default function Home() {
             <h1 className="md:text-[60px] text-[32px] font-bold text-center leading-[130%]">Manage Your Notes, Tasks and Projects <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB2E96] to-[#BC51D6]">Efficiently</span></h1>
             <p className="leading-[25px] text-center">Effortlessly organize your tasks, streamline your workflows, and enhance collaboration with our all-in-one solution. Whether you&apos;re managing personal projects, working solo, or teaming up with colleagues, our platform helps you stay focused, productive, and on top of your game.</p>
             <div className="flex gap-4">
-              <Button >Learn more</Button>
-              <Button variant="secondary" >Get Started</Button>
+              <Button href="/features">Learn more</Button>
+              <Button href="/login" variant="secondary" >Get Started</Button>
             </div>
           </div>
 
