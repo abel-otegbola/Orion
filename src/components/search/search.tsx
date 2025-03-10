@@ -1,5 +1,5 @@
 'use client'
-import { MagnifyingGlass } from "@phosphor-icons/react";
+import SearchIcon from "@/assets/icons/search";
 import { ReactNode, useState } from "react";
 
 interface dropdownProps {
@@ -22,7 +22,7 @@ export default function Search({ value, onChange, className, disabled, placehold
                 ${focus ? "border-primary shadow-input-active" : "border-black/[0.2] "}
                 ${className}
             `}>
-                <span className="opacity-[0.5]"><MagnifyingGlass /></span>
+                <span className="opacity-[0.5]"><SearchIcon /></span>
                 <input 
                     className={` p-2 w-full outline-none
                         bg-transparent rounded-full

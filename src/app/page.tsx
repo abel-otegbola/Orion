@@ -23,7 +23,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center">
-            <Image src={"/hero-dashboard.png"} alt="hero dashboard" width={1000} height={600} className="" />
+            <Image src={"/hero-dashboard-dark.png"} alt="hero dashboard" width={1000} height={600} className="" />
           </div>
         </header>
 

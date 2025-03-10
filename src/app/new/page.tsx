@@ -34,7 +34,7 @@ export default function NewNotePage () {
   }, [newNote])
 
   return (
-      <div className="md:px-10 px-6 flex md:flex-nowrap flex-wrap gap-6 py-[60px]">
+      <div className="md:px-[8%] px-6 flex md:flex-nowrap flex-wrap gap-6 py-[60px]">
           <div className="md:w-[70%] w-full flex flex-col gap-4 items-center">
             <Input onChange={(e) => setNewNote({ ...newNote, title: e.target.value })} placeholder="Title" className="rounded border-gray-500/[0.09]"/>
             

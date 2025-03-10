@@ -1,5 +1,6 @@
 'use client'
 
+import BellIcon from "@/assets/icons/bell";
 import Avatar from "@/components/avatar/avatar";
 // import NoteCard from "@/components/cards/noteCard";
 import TodoCard from "@/components/cards/todoCard";
@@ -9,7 +10,7 @@ import { AuthContext } from "@/context/authContext";
 // import { flashcardsContext } from "@/context/flashcardContext";
 import { NotesContext } from "@/context/noteContext";
 // import { TodosContext } from "@/context/todoContext";
-import { ArrowRight, Bell, Calendar, File } from "@phosphor-icons/react";
+import { ArrowRight, Calendar, File } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -33,7 +34,7 @@ export default function Home() {
           <h1 className="xl:block text-center hidden font-bold text-[20px]">{new Date().getUTCHours() + ":" + new Date().getUTCMinutes()}</h1>
           <div className="flex gap-6 justify-end items-center">
             <Link href={"/help"}>Need help?</Link>
-            <p><Bell size={24} /></p>
+            <p><BellIcon /></p>
             <button className="flex gap-2">
                 <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email || "user" }} />
                 <div className="text-start">
