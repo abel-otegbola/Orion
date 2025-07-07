@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 Orion — Productivity & Finance Tracker
 
-## Getting Started
+> A simple yet powerful productivity web app to log daily tasks and manage personal finances.
 
-First, run the development server:
+## 🔗 Demo  
+👉 [Live Demo](https://orion-logs.vercel.app)
+
+---
+
+## 📌 Overview
+
+**Orion** is a personal productivity and finance management tool built to help users track their daily tasks and monitor financial activities in one place. Whether you're managing time-sensitive tasks or trying to stay on top of your budget, Orion offers a clean and intuitive interface to keep you organized and productive.
+
+Built using modern tools like **Next.js**, **Firebase**, and **Tailwind CSS**, Orion demonstrates a full front-end experience with real-world features like authentication, protected routes, dashboards, and responsive design.
+
+---
+
+## 💡 Features
+
+### ✅ Task Logging
+- Add, edit, and delete daily tasks.
+- Mark tasks as completed.
+- Filter tasks by date and status.
+
+### 💰 Finance Tracking
+- Log income and expenses.
+- View spending trends and summaries.
+- Real-time balance updates.
+
+### 📊 Dashboard Overview
+- Visual summary of weekly tasks and finances.
+- Charts and graphs (coming soon).
+- Quick access to frequently used actions.
+
+### 🔐 Firebase Authentication
+- Secure sign-up and login via email/password.
+- Protected routes that require authentication.
+- User-specific data persistence.
+
+### 🎨 UI/UX
+- Fully responsive layout using **Tailwind CSS**.
+- Clean and minimal design focused on usability.
+- Smooth transitions and interactions.
+
+---
+
+## 🛠 Tech Stack
+
+| Layer       | Technology           |
+|-------------|----------------------|
+| Frontend    | Next.js 14           |
+| Styling     | Tailwind CSS         |
+| Backend Auth| Firebase Auth        |
+| Data Storage| Firebase Firestore   |
+| Hosting     | Vercel               |
+
+---
+
+## 🚀 How to Run Locally
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org ) (LTS version recommended)
+- npm (comes with Node.js)
+
+### Steps
+
+1. **Clone the repository**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/abel-otegbola/orion.git 
+cd orion
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install the required dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the application locally, use the following command:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Once the server is running, open your browser and go to:
+```bash
+http://localhost:3000
+```
 
-## Learn More
+## 🤝 Contributing
+Contributions are welcome! If you'd like to improve Orion, feel free to open an issue or submit a pull request.
 
-To learn more about Next.js, take a look at the following resources:
+## 🧾 License
+This project is licensed under the MIT License — see the LICENSE file for details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👥 Author
+ [Abel Otegbola](https://github.com/abel-otegbola/)
