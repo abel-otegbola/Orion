@@ -1,6 +1,6 @@
 'use client'
 import { AuthContext } from "@/context/authContext";
-import { TodosContext } from "@/context/todoContext";
+import { TodosContext } from "@/context/tasksContext";
 import { ITodo } from "@/interface/note";
 import { CheckCircle, Circle, CircleHalf, X } from "@phosphor-icons/react";
 import { useContext } from "react";

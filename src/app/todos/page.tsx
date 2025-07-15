@@ -4,7 +4,7 @@ import Search from "@/components/search/search";
 import Textarea from "@/components/textarea/textarea";
 import Todo from "@/components/todo/todo";
 import { AuthContext } from "@/context/authContext";
-import { TodosContext } from "@/context/todoContext";
+import { TodosContext } from "@/context/tasksContext";
 import { ITodo } from "@/interface/note";
 import { useContext, useEffect, useState } from "react";
 

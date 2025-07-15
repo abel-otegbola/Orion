@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/footer";
 import Topbar from "@/components/topbar/topbar";
-import TodosProvider from "@/context/todoContext";
+import TasksProvider from "@/context/tasksContext";
 import NotesProvider from "@/context/noteContext";
 import AuthProvider from "@/context/authContext";
 import FlashcardsProvider from "@/context/flashcardContext";
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <TodosProvider>
+    <TasksProvider>
     <FlashcardsProvider>
     <html lang="en">
       <body
@@ -37,6 +37,6 @@ export default function RootLayout({
       </body>
     </html>
     </FlashcardsProvider>
-    </TodosProvider>
+    </TasksProvider>
   );
 }

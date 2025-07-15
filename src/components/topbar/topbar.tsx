@@ -2,15 +2,18 @@
 import { ReactNode, useContext, useEffect, useState } from "react"
 import Tab from "../tab/tab"
 import Link from "next/link"
-import { Gear, SignIn, SignOut } from "@phosphor-icons/react"
+import { SignIn, SignOut } from "@phosphor-icons/react"
 import Avatar from "../avatar/avatar"
 import { useOutsideClick } from "@/helpers/useClickOutside"
 import Menu from "../navMenu/navMenu"
-import { NoteBlank } from "@phosphor-icons/react/dist/ssr"
 import { AuthContext } from "@/context/authContext"
-import Button from "../button/button"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
+import HomeIcon from "@/assets/icons/home"
+import SettingsIcon from "@/assets/icons/settings"
+import FileIcon from "@/assets/icons/file"
+import CalendarIcon from "@/assets/icons/calendar"
+import BellIcon from "@/assets/icons/bell"
+import ThemeSelector from "../themeSelector/themeSelector"
 
 type navTab =  {
     id: number | string,
@@ -32,26 +35,26 @@ function Topbar() {
     })
 
     const navTabs: navTab[] = [
-        { id: 0, label: "Home", to: "/" },
-        { id: 1, label: "Features", to: "/features" },
-        { id: 2, label: "About Us", to: "/about"},
-        { id: 3, label: "Contact Us", to: "/contact" },
+        { id: 0, label: "Home", icon: <HomeIcon />, to: "/" },
+        { id: 1, label: "Messages", icon: <BellIcon />, to: "/inbox"},
+        { id: 2, label: "About", icon: <FileIcon />, to: "/about"},
+        { id: 3, label: "Contact", icon: <CalendarIcon />, to: "/contact" },
     ]
 
     const closeMenu = useOutsideClick(setOpen, false)
     const pathname  = usePathname()
 
     return (
-        <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : "md:px-[8%] px-6"}`}>
+        <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full border border-gray-500/[0.1] justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : "md:px-[8%] px-6"}`}>
             <div className="md:w-[27%]">
-                <Link href="/" className="h-[30px] rounded flex flex-col justify-center px-2 font-bold">
-                    <Image src="/logo.svg" alt="logo" width={82} height={40} />
+                <Link href="/" className="h-[30px] rounded text-[20px] flex flex-col justify-center px-2 font-bold">
+                    Orion
                     {/* <p>Hi 👋, {user?.email?.split("@")[0]}</p>
                     <p>Welcome back</p> */}
                 </Link>
             </div>
 
-            <nav className="flex justify-between md:static flex-1 items-center w-full p-4 fixed bottom-0 left-0 md:w-fit w-full md:border-none border border-gray-500/[0.1] items-center z-[10]">
+            <nav className="flex justify-between md:static flex-1 items-center w-full p-4 fixed bottom-20 left-0 md:w-fit w-full md:border-none border border-gray-500/[0.1] items-center z-[10]">
                 {
                     navTabs.map((tab: navTab) => (
                         <Tab key={tab.id} label={tab.label} href={tab.to} icon={tab.icon} />
@@ -60,16 +63,16 @@ function Topbar() {
             </nav>
 
             <div className="flex gap-8 items-center justify-end flex-1">
-                <Button href={`/new`} className="max-[500px]:hidden">New note</Button>
+                <ThemeSelector />
                 <div ref={closeMenu} className={`relative`}>
                     <button onClick={() => setOpen(!open)} className="h-[40px] w-[40px]">
-                        <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email?.split("@")[0] || "user" }} />
+                        <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email?.split("@")[0] || "a" }} />
                     </button>
                     {
                         open ? <Menu list={
                             [
-                                {id: "1", title: "Notes", icon: <NoteBlank />, href: "/"},
-                                {id: "2", title: "Settings", icon: <Gear />, href: "/settings"},
+                                !user ? {id: "1", title: "Dashboard", icon: <HomeIcon />, href: "/dashboard"} : {id: "0", title: "Get started", icon: <SignIn />, href: "/login"},
+                                {id: "2", title: "Settings", icon: <SettingsIcon />, href: "/settings"},
                                 user ? {id: "3", title: "Logout", icon: <SignOut />, href: "#"} : {id: "0", title: "Login", icon: <SignIn />, href: "/login"},
                             ]
                         } close={setOpen} /> 

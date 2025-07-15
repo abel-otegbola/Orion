@@ -10,7 +10,7 @@ export default function TodoCard({ todo, i }: { todo: ITodo, i: number }) {
     
 
     return (
-      <div key={todo.id} className={`flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] ${i === 0 ? "text-white bg-gradient-to-tr from-primary to-fuchsia-600" : "bg-white dark:bg-dark shadow-md"}`}>
+      <div key={todo.id} className={`flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] ${i === 0 ? "text-white bg-gradient-to-tr from-primary to-fuchsia-600" : "bg-white dark:bg-transparent bg-gradient-to-tr from-[#552B26]/[0.4] via-[#331A23]/[0.4] to-[#110E13]/[0.4] shadow-md"}`}>
       <p className="text-[8px]">{todo.createdAt}</p>
       <div className="flex flex-col gap-4 py-1">
         <Link href="/todos" className="font-semibold text-md">{todo.title}</Link>

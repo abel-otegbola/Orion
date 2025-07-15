@@ -14,6 +14,7 @@ const config: Config = {
         "secondary": "#999",
         "tetiary": "#333",
         "dark": "#151518",
+        'radial-gradient': 'radial-gradient(rgba(85, 43, 38, 0.40) 0%, rgba(68, 32, 32, 0.40) 27.69%, rgba(51, 26, 35, 0.40) 54.27%, rgba(17, 14, 19, 0.40) 100%, #211F22)',
       },
       boxShadow: {
         "input-active" : "0px 0px 12px 0px #633CFF40"
