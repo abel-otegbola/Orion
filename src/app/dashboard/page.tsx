@@ -95,7 +95,7 @@ export default function Home() {
               <Link href={"/todos"} className="text-primary">View details</Link>
             </div>
 
-            <div className="border border-gray-500/[0.1] rounded-lg flex-1 max-h-[320px] overflow-y-auto">
+            <div className="border border-gray-500/[0.1] rounded-lg flex-1 max-h-[340px] overflow-y-auto">
                 <TasksLayout tasks={[]} value={new Date()} layout={"Calendar"} />
             </div>
           </div>
@@ -103,13 +103,13 @@ export default function Home() {
         </section>
       </div>
 
-      <section className="mt-12">
+      <section className="mt-6">
         <div className="bg-white dark:bg-dark h-full">
             <h2 className="flex items-center gap-3 font-bold text-[20px]">
                 <p className={``}><FileIcon width={24} /> </p>
                 Tasks
             </h2>
-            <NotesTable data={notes} fields={["Title", "Date", "Text", "Word Count"]} />
+            <NotesTable data={notes} fields={["Title", "Due date", "Assigned to"]} />
         </div>
 
       </section>
