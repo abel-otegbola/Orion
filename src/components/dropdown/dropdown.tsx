@@ -1,7 +1,5 @@
 'use client'
-import { useOutsideClick } from "@/helpers/useClickOutside";
-import { CaretDown, SortAscending } from "@phosphor-icons/react";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useState } from "react";
 
 type option = {
   id: string | number;
@@ -17,65 +15,46 @@ interface dropdownProps {
     value: string | number;
     onChange: (value: string) => void;
     error?: string | undefined;
-    placeholder?: string;
     options?: option[];
+    placeholder?: string
 }
 
-export default function Dropdown({ className, disabled, label, name, options, value, onChange, error, placeholder }: dropdownProps) {
+export default function Dropdown({ className, disabled, label, name, options, value, onChange, error }: dropdownProps) {
     const [focus, setFocus] = useState(false)
-    const [search, setSearch] = useState("")
-    const [useSearch, setUseSearch] = useState(false)
-    const [active, setActive] = useState<option>({ id: 0, title: "", icon: null })
-
-    const optionsRef = useOutsideClick(setFocus, false)
-
-    const inputRef = useRef<HTMLInputElement>(null)
-
-    const handleChange = (value: string) => {
-      onChange(value)
-    }
 
     return (
-        <div ref={optionsRef} className="relative flex flex-col w-full gap-1">
-            { label ? <label htmlFor={name} className="">{label}</label> : "" }
+        <div className={`relative flex flex-col gap-1 ${className}`}>
+            <div className="flex justify-between gap-4">
+                { label ? <label htmlFor={name} className={`text-[12px] ${focus ? "text-primary" : ""}`}>{label}</label> : "" }
+            </div>
 
-            <div className={`flex items-center relative rounded-lg bg-white dark:bg-dark w-full p-[6px] px-4 border duration-500 z-[10] 
-                ${error && !focus ? "border-red text-red" : "border-gray/[0.3] dark:border-gray-500/[0.4]"}
-                ${focus ? "border-primary shadow-input-active" : " "}
+            <div className={`flex items-center relative rounded-lg bg-transparent w-full py-1 pl-1 border duration-500 z-[1] 
+                ${error && !focus ?  "border-red-500 text-red-500 " : "border-gray/[0.3] dark:border-gray-500/[0.4]"}
+                ${focus ? "border-primary dark:border-primary shadow-input-active" : ""}
                 ${ className }
             `}>
-                <span className="text-[16px]">{ active.icon || <SortAscending /> }</span>
-                <input
-                    ref={inputRef}
-                    className={` p-2 w-full outline-none bg-transparent cursor-pointer
+                <span className="text-[16px]">
+                  {/* <Map /> */}
+                </span>
+                <select
+                    className={`sm:p-2 p-[6px] w-[97%] outline-none bg-transparent cursor-pointer
                         ${className} 
                         ${disabled ? "opacity-[0.25]" : ""}
                     `}
                     name={name}
-                    value={search}
-                    placeholder={active.title || placeholder}
+                    value={value}
                     id={name}
                     onClick={() => setFocus(!focus)}
-                    onChange={(e) => {setSearch(e.target.value); setUseSearch(true)}}
-                    onBlur={(e) => {onChange(e.target.value); setUseSearch(false)}}
-                />
+                    onChange={(e) => {onChange(e.target.value)}}
+                >
+                  {
+                    options?.map(option => (
+                      <option className="flex gap-2 items-center dark:bg-dark" key={option.id} value={option.title}>{option.title}</option>
+                    ))
+                  }
+                </select>
 
-                { error && !focus ? <p className="absolute right-2 px-2 text-[12px] bg-white dark:bg-dark backdrop-blur-sm">{error}</p> : "" }
-                <span className={`${!focus ? "rotate-0" : "rotate-180" } duration-500`}><CaretDown /></span>
-            </div>
-
-            <div className={`rounded-[8px] absolute top-[70px] left-0 w-full max-h-[200px] overflow-y-auto z-[1000] bg-white dark:bg-dark dark:text-gray shadow-md duration-700 overflow-y-auto border border-gray/[0.2] ${focus ? "block" : "hidden"}`}>
-              {
-                (useSearch ? options?.filter(item => item.title.indexOf(search) !== -1) : options)?.map((option: option) => (
-                  <div tabIndex={1} key={option.id} 
-                    onClick={() => {setActive(option); handleChange(option.title); onChange(option.title); setFocus(false); setSearch(option.title); setUseSearch(false)}} 
-                    className={`p-4 flex w-full items-center cursor-pointer gap-2 mb-[2px] hover:text-primary bg-white dark:bg-dark ${option.title === value ? "text-primary" : ""}`}
-                  >
-                    <span className="">{option.icon}</span>
-                    {option.title}
-                  </div>
-                ))
-              }
+                { error && !focus ? <p className="absolute right-2 px-2 text-[12px] bg-white dark:bg-black text-red-500 backdrop-blur-sm">{error}</p> : "" }
             </div>
         </div>
     )

@@ -30,7 +30,7 @@ export default function Input({ className, disabled, label, name, value, type, o
             `}>
                 <span className={`${!focus ? "opacity-[0.4]": "text-primary"} ${leftIcon ? "pl-2" : ""}`}>{ leftIcon }</span>
                 <input 
-                    className={`p-2 w-full outline-none bg-transparent
+                    className={`sm:p-2 p-[6px] w-full outline-none bg-transparent
                         ${className} 
                         ${disabled ? "opacity-[0.25]" : ""}
                     `}

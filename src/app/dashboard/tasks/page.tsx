@@ -25,25 +25,27 @@ export default function Taskspage () {
           
 
           <div className="flex md:justify-end justify-between md:w-fit w-full">
-          <Button variant="secondary" onClick={() => setOpen(!open)}>Create new Task</Button>
-            <button 
-              className={`${layout === "Calendar" ? "bg-primary text-white" : ""} p-2 py-[6px] text-[16px] rounded-l-lg border border-gray-500/[0.2] ml-4`}
-              onClick={() => setLayout("Calendar")}
-            >
-                <Calendar />
-            </button>
-            <button 
-              className={`${layout === "Grid" ? "bg-primary text-white" : ""} p-2 py-[6px] text-[16px] border border-gray-500/[0.2]`}
-              onClick={() => setLayout("Grid")}
-            >
-                <GridFour />
-            </button>
-            <button 
-              className={`${layout === "List" ? "bg-primary text-white" : ""} p-2 py-[6px] text-[16px] rounded-r-lg border border-gray-500/[0.2]`}
-              onClick={() => setLayout("List")}
-            >
-                <List />
-            </button>
+            <Button variant="secondary" onClick={() => setOpen(!open)}>Create new Task</Button>
+            <div className="flex items-center">
+              <button 
+                className={`${layout === "Calendar" ? "bg-primary text-white" : ""} p-2 py-[6px] text-[16px] rounded-l-lg border border-gray-500/[0.2] ml-4`}
+                onClick={() => setLayout("Calendar")}
+              >
+                  <Calendar />
+              </button>
+              <button 
+                className={`${layout === "Grid" ? "bg-primary text-white" : ""} p-2 py-[6px] text-[16px] border border-gray-500/[0.2]`}
+                onClick={() => setLayout("Grid")}
+              >
+                  <GridFour />
+              </button>
+              <button 
+                className={`${layout === "List" ? "bg-primary text-white" : ""} p-2 py-[6px] text-[16px] rounded-r-lg border border-gray-500/[0.2]`}
+                onClick={() => setLayout("List")}
+              >
+                  <List />
+              </button>
+            </div>
           </div>
         </div>
 

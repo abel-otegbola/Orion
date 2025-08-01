@@ -48,10 +48,10 @@ export default function Layout({
                         <Avatar user={{ id: "0", email: user?.email || "", fullname: user?.email || "user" }} />
                         }
                     </button>
-                    <div className={`flex flex-col justify-between md:w-full w-[240px] md:h-screen h-[100vh] md:sticky fixed md:top-0 top-0 py-4 md:px-4 right-0 md:bg-gray-100/[0.1] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border-transparent border-x-gray-500/[0.1] overflow-hidden z-[5] transition-all duration-700 ${open ? "translate-x-[0]": "md:translate-x-[0] translate-x-[130%]"}`}>  
+                    <div className={`flex flex-col justify-between md:w-full w-[280px] md:h-screen h-[100vh] md:sticky fixed md:top-0 top-0 py-4 px-4 right-0 md:bg-gray-100/[0.1] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border-transparent border-x-gray-500/[0.1] overflow-hidden z-[5] transition-all duration-700 ${open ? "translate-x-[0]": "md:translate-x-[0] translate-x-[130%]"}`}>  
                        
                         <div className="flex flex-col gap-1">
-                            <Link href="/" className="flex font-bold pt-2 pb-6 md:px-[1px] px-6 text-[18px]">
+                            <Link href="/" className="flex font-bold pt-2 pb-6 md:px-[1px] px-2 text-[18px]">
                                 <Image src="/logo.png" alt="logo" width={60} height={20} />
                             </Link>
                             <Search className="rounded-[4px] mb-4" placeholder="Search here..."/>
