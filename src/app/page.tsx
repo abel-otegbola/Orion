@@ -9,13 +9,13 @@ export default function Home() {
     <main className="">
 
         <header className="pt-16 min-h-screen bg-center bg-cover dark:bg-dark" style={{ backgroundImage: `url("/bg.svg")` }}>
-          <div className="flex flex-col gap-6 items-center md:p-[40px] p-6 md:w-[70%] mx-auto">
+          <div className="flex flex-col gap-6 items-center md:p-[40px] p-6 md:w-[78%] mx-auto">
             <div className="flex items-center p-1 border border-gray-500/[0.2] rounded-full text-[10px]">
               <p className="p-2 px-4 rounded-full bg-primary/[0.1] text-primary font-semibold">An idea?</p>
               <p className="px-3 pr-6">Envision It, Organize It, Achieve It</p>
             </div>
-            <h1 className="md:text-[48px] text-[32px] font-bold text-center leading-[130%]">Manage Your Notes, Tasks and Finance <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB2E96] to-[#BC51D6]">Efficiently</span></h1>
-            <p className="leading-[25px] text-center">Effortlessly organize your tasks, streamline your workflows, and enhance collaboration with our all-in-one solution. Whether you&apos;re managing personal projects, working solo, or teaming up with colleagues, our platform helps you stay focused, productive, and on top of your game.</p>
+            <h1 className="md:text-[40px] text-[32px] font-bold text-center leading-[130%]">Stop guessing what works. Start understanding how you create your best work<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB2E96] to-[#BC51D6]"></span></h1>
+            <p className="leading-[25px] text-center md:w-[75%]">Orion helps you log tasks simply, then shows you when, why, and how you’re truly productive. No noise. Just insights that fit your flow.. Whether you&apos;re managing personal projects, working solo, or teaming up with colleagues, our platform helps you stay focused, productive, and on top of your game.</p>
             <div className="flex gap-4">
               <Button href="/features">Learn more</Button>
               <Button href="/login" variant="secondary" >Get Started</Button>

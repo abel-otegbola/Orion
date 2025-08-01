@@ -23,7 +23,7 @@ export default function Home() {
     <main className="w-full gap-6">
       <div className="">
 
-        <div className="grid xl:grid-cols-3 grid-cols-2 items-center w-full gap-2 justify-between pb-4 border-b border-gray-500/[0.1]">
+        <div className="grid xl:grid-cols-3 grid-cols-2 items-center w-full gap-2 justify-between p-4 border-b border-gray-500/[0.1] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318]">
           
           <div className="flex flex-col gap-1 justify-center">
             <h1 className="font-bold text-[18px]">Overview</h1>
@@ -44,10 +44,10 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="grid xl:grid-cols-2 md:grid-cols-1 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start py-6">
+        <section className="grid xl:grid-cols-2 md:grid-cols-1 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start p-4">
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white dark:bg-dark border border0gray-500/[0.1]">
+            <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
               <div className="flex justify-between p-1">
                 <Link href="/todos" className="text-md">Investment</Link>
                 <button><ArrowRight size={16}/></button>
@@ -59,7 +59,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white dark:bg-dark border border0gray-500/[0.1]">
+            <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
               <div className="flex justify-between p-1">
                 <Link href="/todos" className="text-md">Todo-list</Link>
                 <button><ArrowRight size={16}/></button>
@@ -103,11 +103,11 @@ export default function Home() {
         </section>
       </div>
 
-      <section className="mt-6">
-        <div className="bg-white dark:bg-dark h-full">
-            <h2 className="flex items-center gap-3 font-bold text-[20px]">
-                <p className={``}><FileIcon width={24} /> </p>
-                Tasks
+      <section className="mt-2 p-4">
+        <div className="h-full">
+            <h2 className="flex items-center gap-1 font-medium">
+                <FileIcon width={24} />
+                <p>Tasks</p>
             </h2>
             <NotesTable data={notes} fields={["Title", "Due date", "Assigned to"]} />
         </div>

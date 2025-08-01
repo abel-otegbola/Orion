@@ -37,10 +37,10 @@ export default function Dropdown({ className, disabled, label, name, options, va
 
     return (
         <div ref={optionsRef} className="relative flex flex-col w-full gap-1">
-            { label ? <label htmlFor={name} className="text-[12px]">{label}</label> : "" }
+            { label ? <label htmlFor={name} className="">{label}</label> : "" }
 
-            <div className={`flex items-center relative rounded-lg bg-white dark:bg-dark w-full p-2 px-4 border duration-500 z-[10] 
-                ${error && !focus ? "border-red text-red" : "border-black/[0.2]  dark:text-gray dark:border-gray/[0.2]"}
+            <div className={`flex items-center relative rounded-lg bg-white dark:bg-dark w-full p-[6px] px-4 border duration-500 z-[10] 
+                ${error && !focus ? "border-red text-red" : "border-gray/[0.3] dark:border-gray-500/[0.4]"}
                 ${focus ? "border-primary shadow-input-active" : " "}
                 ${ className }
             `}>
@@ -64,7 +64,7 @@ export default function Dropdown({ className, disabled, label, name, options, va
                 <span className={`${!focus ? "rotate-0" : "rotate-180" } duration-500`}><CaretDown /></span>
             </div>
 
-            <div className={`rounded-[8px] absolute top-[60px] left-0 w-full max-h-[200px] overflow-y-auto z-[1000] bg-white dark:bg-dark dark:text-gray shadow-md duration-700 overflow-y-auto border border-gray/[0.2] ${focus ? "block" : "hidden"}`}>
+            <div className={`rounded-[8px] absolute top-[70px] left-0 w-full max-h-[200px] overflow-y-auto z-[1000] bg-white dark:bg-dark dark:text-gray shadow-md duration-700 overflow-y-auto border border-gray/[0.2] ${focus ? "block" : "hidden"}`}>
               {
                 (useSearch ? options?.filter(item => item.title.indexOf(search) !== -1) : options)?.map((option: option) => (
                   <div tabIndex={1} key={option.id} 

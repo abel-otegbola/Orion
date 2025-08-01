@@ -31,6 +31,7 @@ export default function TasksProvider ({
         }
         else {
             try {
+                console.log(newTask)
                 const docRef = await addDoc(collection(db, "tasks"), { ...newTask, createdAt: new Date(), updatedAt: new Date(), status: "pending", duration: "", user });
                 console.log(docRef)
                 getAllTasks(user)

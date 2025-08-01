@@ -9,7 +9,7 @@ import { AuthContext } from "@/context/authContext";
 import { TasksContext } from "@/context/tasksContext";
 
 
-export default function NewTask({ Task, setClose }: { Task?: TaskData, doctor: string, setClose: (aug0: boolean) => void}) {
+export default function NewTask({ task, setClose }: { task?: TaskData, setClose: (aug0: boolean) => void}) {
   const { user } = useContext(AuthContext);
   const { addNewTask, updateTask, loading } = useContext(TasksContext);
   const [data, setData] = useState<TaskData>({ id: "", title: "", date: "", durationStart: "", durationEnd: "", status: "Upcoming", description: "", type: "", })
@@ -17,8 +17,8 @@ export default function NewTask({ Task, setClose }: { Task?: TaskData, doctor: s
 
 
   useEffect(() => {
-    if(Task) {
-        setData(Task)
+    if(task) {
+        setData(task)
     //   setTitle(Task.title)
     //   setDate(Task.date.split("T")[0])
     //   setStatus(Task.status)
@@ -27,13 +27,13 @@ export default function NewTask({ Task, setClose }: { Task?: TaskData, doctor: s
     //   setDurationStart(Task.duration.split(",")[0])
     //   setDurationEnd(Task.duration.split(",")[1])
     }
-  }, [Task])
+  }, [task])
 
   return (
-    <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] flex items-center justify-center z-[100]">        
-        <div className="flex flex-col p-4 gap-4 max-w-[300px] bg-white dark:bg-black w-full">
-            <Button className="px-2 py-1 mb-4" variant="tetiary" onClick={() => setClose(false)}><X /></Button>
-            <Input label={"title"} onChange={(e) => setData({ ...data, title: e.target.value })} value={data.title} type={"text"} />
+    <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] backdrop-blur-sm flex items-center justify-end z-[100]">        
+        <div className="flex flex-col h-full p-4 px-8 gap-4 max-w-[400px] text-[10px] bg-white dark:bg-dark w-full">
+            <button className="py-2 mb-4" onClick={() => setClose(false)}><X /></button>
+            <Input label={"Title"} onChange={(e) => setData({ ...data, title: e.target.value })} value={data.title} type={"text"} />
             <Input label={"Date"} onChange={(e) => setData({ ...data, date: e.target.value })} value={data.date} type={"date"} />
 
             <div className="grid grid-cols-2 gap-2">
@@ -63,8 +63,8 @@ export default function NewTask({ Task, setClose }: { Task?: TaskData, doctor: s
 
             <Button type="button" className="p-2 w-full bg-purple text-white rounded"
                 onClick={() => 
-                    Task ?
-                    updateTask(Task.id, { ...data, patient: Task.patient, doctor: Task.doctor }, user.email || "")
+                    task ?
+                    updateTask(task.id, { ...data }, user.email || "")
                     :
                     addNewTask({...data }, user.email || "")
                 }

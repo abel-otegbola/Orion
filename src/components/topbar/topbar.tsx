@@ -14,6 +14,7 @@ import FileIcon from "@/assets/icons/file"
 import CalendarIcon from "@/assets/icons/calendar"
 import BellIcon from "@/assets/icons/bell"
 import ThemeSelector from "../themeSelector/themeSelector"
+import Image from "next/image"
 
 type navTab =  {
     id: number | string,
@@ -48,7 +49,7 @@ function Topbar() {
         <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full border border-gray-500/[0.1] justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : "md:px-[5%] px-6"}`}>
             <div className="md:w-[32%]">
                 <Link href="/" className="h-[30px] rounded text-[20px] flex flex-col justify-center px-2 font-bold">
-                    Orion
+                    <Image src="/logo.png" alt="logo" width={60} height={20} />
                     {/* <p>Hi 👋, {user?.email?.split("@")[0]}</p>
                     <p>Welcome back</p> */}
                 </Link>
