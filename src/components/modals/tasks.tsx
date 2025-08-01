@@ -16,7 +16,7 @@ export default function TasksLayout({ tasks, value, layout }: TaskLayoutProps) {
     // }
 
     return (
-        <div className="p-4 bg-white dark:bg-transparent">
+        <div className="p-4 dark:bg-transparent">
             {
                 layout === "Calendar" ?
                 <div className="pb-12 pt-0 w-full md:max-w-[90vw] max-w-[85vw]">

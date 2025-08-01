@@ -31,7 +31,7 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
 
   return (
     <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] backdrop-blur-sm flex items-center justify-end z-[100]">        
-        <div className="flex flex-col h-full p-4 px-8 gap-4 max-w-[400px] text-[10px] bg-white dark:bg-dark w-full">
+        <div className="flex flex-col h-full p-4 px-8 gap-4 max-w-[400px] bg-white dark:bg-dark w-full">
             <button className="py-2 mb-4" onClick={() => setClose(false)}><X /></button>
             <Input label={"Title"} onChange={(e) => setData({ ...data, title: e.target.value })} value={data.title} type={"text"} />
             <Input label={"Date"} onChange={(e) => setData({ ...data, date: e.target.value })} value={data.date} type={"date"} />
@@ -61,7 +61,7 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
 
             <Input label={"Description"} onChange={(e) => setData({ ...data, description: e.target.value })} value={data.description} type={"text"} />
 
-            <Button type="button" className="p-2 w-full bg-purple text-white rounded"
+            <Button variant="secondary" type="button" className="p-2 w-full bg-purple text-white rounded"
                 onClick={() => 
                     task ?
                     updateTask(task.id, { ...data }, user.email || "")
