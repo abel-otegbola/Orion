@@ -18,11 +18,11 @@ export default function TaskGrid({element, layout}: { element: TaskData, layout:
             onKeyDown={(e) => e.key === "Enter" ? setOpen(!open) : ""}
             style={{ top: tasksLayout(element.durationStart + "," + element.durationEnd).top, height: !open ? tasksLayout(element.durationStart + "," + element.durationEnd).height : "auto" }} 
             className={`m-[2px] overflow-auto dark:bg-gray-600/[0.1] bg-white ${layout === "Calendar" ? `absolute text-[10px] w-[97%]` : `${!open ? "min-h-[80px]" : ""} text-[12px]`} 
-            left-0 border duration-500 rounded px-2 py-1 pb-2 break-inside-avoid min-h-[65px] z-[1]
+            left-0 border border-gray-500/[0.4] shadow-lg duration-500 rounded px-2 py-1 pb-2 break-inside-avoid min-h-[65px] z-[1]
             ${element.status === "Completed" ? "border-green-400/[0.2]" 
-            : element.status === "Upcoming" ? "border-orange-400/[0.2]" 
-            : element.status === "On-hold" ? "border-red/[0.2]" 
-            : "border-primary/[0.2]"} `}>          
+            : element.status === "Upcoming" ? "bg-orange-400/[0.2]" 
+            : element.status === "On-hold" ? "bg-gradient-to-tr from-red to-red-600" 
+            : "text-white bg-gradient-to-tr from-primary to-fuchsia-600"} `}>          
             
             <button className="font-medium mt-1 text-start">{element.title}</button>  
             <p className="text-[10px] mt-1">{element.doctor}</p>  
