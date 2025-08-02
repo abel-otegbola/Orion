@@ -6,6 +6,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import { Toaster } from "react-hot-toast";
 import { account } from "@/appwrite/appwrite";
 import { ID } from "appwrite";
+import { useRouter } from "next/navigation";
 
 type values = {
     user: User;
@@ -30,6 +31,7 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
     const [user, setUser] = useLocalStorage("user", null);
     const [popup, setPopup] = useState({ type: "", msg: "" });
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const formatError = (msg: string) => {
         return msg.replace("Firebase: Error (auth/", "").replace("-", " ").replace(")", "")
@@ -37,10 +39,11 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
 
     async function signIn(email: string, password: string) {
         setLoading(true)
-        await account.createSession(email, password)
+        await account.createEmailPasswordSession(email, password)
             .then(response => {
             setPopup({ type: "success", msg: "Login successful" })
             setUser(response)
+            router.push("/dashboard")
             setLoading(false)
         })
         .catch(error => {
@@ -70,9 +73,6 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
             const provider = new GoogleAuthProvider()
             signInWithPopup(auth, provider)
             .then(() => {
-                // const credential = GoogleAuthProvider.credentialFromResult(result);
-                // const token = credential?.accessToken;
-                // const user = result.user
                 setPopup({ type: "success", msg:  "Login Successful" })
                 setLoading(false)
 

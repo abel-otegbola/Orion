@@ -4,9 +4,7 @@ import "./globals.css";
 import Footer from "@/components/footer/footer";
 import Topbar from "@/components/topbar/topbar";
 import TasksProvider from "@/context/tasksContext";
-import NotesProvider from "@/context/noteContext";
 import AuthProvider from "@/context/authContext";
-import FlashcardsProvider from "@/context/flashcardContext";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,22 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <TasksProvider>
-    <FlashcardsProvider>
     <html lang="en">
       <body
         className={`${inter.className} antialiased dark:bg-dark dark:text-white/[0.9] md:text-[14px] text-[12px]`}
       >
+      <TasksProvider>
       <AuthProvider>
-        <NotesProvider>
           <Topbar />
           {children}
           <Footer />
-        </NotesProvider>
       </AuthProvider>
+      </TasksProvider>
       </body>
     </html>
-    </FlashcardsProvider>
-    </TasksProvider>
   );
 }

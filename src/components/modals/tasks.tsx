@@ -1,7 +1,7 @@
 import { TaskData, Value } from "@/interface/task";
 import moment from 'moment'
 import TaskGrid from "../grids/tasksGrid";
-import TodoCard from "../cards/todoCard";
+import TaskCard from "../cards/taskCard";
 
 type TaskLayoutProps = {
     tasks: TaskData[],
@@ -16,7 +16,7 @@ export default function TasksLayout({ tasks, value, layout }: TaskLayoutProps) {
     // }
 
     return (
-        <div className="p-4 dark:bg-transparent">
+        <div className="dark:bg-transparent">
             {
                 layout === "Calendar" ?
                 <div className="pb-12 pt-0 w-full md:max-w-[90vw] max-w-[85vw]">
@@ -61,10 +61,10 @@ export default function TasksLayout({ tasks, value, layout }: TaskLayoutProps) {
                 :
 
                 layout === "Grid" ?
-                    <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-2">
+                    <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-2 gap-2">
                         {
                             tasks.map((element, i) => ( 
-                                <TodoCard key={element.id} i={i} todo={element}/>
+                                <TaskCard key={element.$id} i={i} todo={element}/>
                             ))
                         }
                     </div>

@@ -16,7 +16,7 @@ export default function TaskGrid({element, layout}: { element: TaskData, layout:
             ref={taskRef} 
             onClick={() => setOpen(!open)}
             onKeyDown={(e) => e.key === "Enter" ? setOpen(!open) : ""}
-            style={{ top: tasksLayout(element.durationStart + "," + element.durationEnd).top, height: !open ? tasksLayout(element.durationStart + "," + element.durationEnd).height : "auto" }} 
+            style={{ height: !open ? tasksLayout(element.durationStart + "," + element.durationEnd).height : "auto" }} 
             className={`m-[2px] overflow-auto dark:bg-gray-600/[0.1] bg-white ${layout === "Calendar" ? `absolute text-[10px] w-[97%]` : `${!open ? "min-h-[80px]" : ""} text-[12px]`} 
             left-0 border border-gray-500/[0.4] shadow-lg duration-500 rounded px-2 py-1 pb-2 break-inside-avoid min-h-[65px] z-[1]
             ${element.status === "Completed" ? "border-green-400/[0.2]" 

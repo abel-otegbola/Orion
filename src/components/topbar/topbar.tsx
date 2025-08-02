@@ -75,7 +75,7 @@ function Topbar() {
                             [
                                 user ? {id: "1", title: "Dashboard", icon: <HomeIcon />, href: "/dashboard"} : {id: "0", title: "Get started", icon: <SignIn />, href: "/login"},
                                 {id: "2", title: "Settings", icon: <SettingsIcon />, href: "/settings"},
-                                user ? {id: "3", title: "Logout", icon: <LogoutIcon />, href: "#"} : {id: "0", title: "Login", icon: <SignIn />, href: "/login"},
+                                user ? {id: "3", title: "Logout", icon: <LogoutIcon />, href: "#"} : {id: "4", title: "Login", icon: <SignIn />, href: "/login"},
                             ]
                         } close={setOpen} /> 
                         : ""

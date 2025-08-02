@@ -5,12 +5,13 @@ export interface TaskData {
     durationStart: string,
     durationEnd: string,
     date: string,
-    patient?: string,
-    doctor?: string,
+    priority: 'low' | 'medium' | 'high',
+    parentId?: string,
     createdAt?: string;
     updatedAt?: string;
     status: string,
     description: string,
+    category: string
 }
 
 type ValuePiece = Date | null;

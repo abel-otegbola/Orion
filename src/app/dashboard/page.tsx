@@ -4,20 +4,18 @@ import BellIcon from "@/assets/icons/bell";
 import CalendarIcon from "@/assets/icons/calendar";
 import FileIcon from "@/assets/icons/file";
 import Avatar from "@/components/avatar/avatar";
-import TodoCard from "@/components/cards/todoCard";
+import TaskCard from "@/components/cards/taskCard";
 import TasksLayout from "@/components/modals/tasks";
 import { NotesTable } from "@/components/table/notesTable";
 import ThemeSelector from "@/components/themeSelector/themeSelector";
 import { AuthContext } from "@/context/authContext";
-import { NotesContext } from "@/context/noteContext";
-import { ArrowRight } from "@phosphor-icons/react";
+// import { ArrowRight } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useContext } from "react";
 
 
 export default function Home() {
   const { user } = useContext(AuthContext)
-  const { notes } = useContext(NotesContext)
   
   return (
     <main className="w-full gap-6">
@@ -31,7 +29,6 @@ export default function Home() {
           </div>
           <h1 className="xl:block text-center hidden font-bold text-[20px]">{new Date().getUTCHours() + ":" + new Date().getUTCMinutes()}</h1>
           <div className="flex gap-6 justify-end items-center">
-            <Link href={"/help"}>Need help?</Link>
             <p><BellIcon /></p>
             <ThemeSelector />
             <button className="flex gap-2">
@@ -47,7 +44,7 @@ export default function Home() {
         <section className="grid xl:grid-cols-2 md:grid-cols-1 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start p-4">
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
+            {/* <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
               <div className="flex justify-between p-1">
                 <Link href="/todos" className="text-md">Investment</Link>
                 <button><ArrowRight size={16}/></button>
@@ -69,14 +66,14 @@ export default function Home() {
                 <p className="text-[20px] font-medium p-1 flex-1 flex items-end">12</p>
                 <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
               </div>
-            </div>
+            </div> */}
 
             {
               [
                 {id: "0", createdAt: "Sun 25th, Jan 2025", title: "Design and development of flashnotes", description: "Project management dashboard for a crypto exchange platform. Highlights of feature" },
                 {id: "1", createdAt: "Mon 15th, Jan 2025", title: "Paystack Developers Meeting", description: "Project management dashboard for a crypto exchange platform. Highlights of feature" },
               ].map((todo, i) => (
-                 <TodoCard key={todo.id} todo={todo} i={i} />
+                 <TaskCard key={todo.id} todo={todo} i={i} />
                 ))
             }
 
@@ -109,7 +106,7 @@ export default function Home() {
                 <FileIcon width={24} />
                 <p>Tasks</p>
             </h2>
-            <NotesTable data={notes} fields={["Title", "Due date", "Assigned to"]} />
+            <NotesTable data={[]} fields={["Title", "Due date", "Assigned to"]} />
         </div>
 
       </section>

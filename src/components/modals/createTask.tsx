@@ -12,7 +12,7 @@ import { TasksContext } from "@/context/tasksContext";
 export default function NewTask({ task, setClose }: { task?: TaskData, setClose: (aug0: boolean) => void}) {
   const { user } = useContext(AuthContext);
   const { addNewTask, updateTask, loading } = useContext(TasksContext);
-  const [data, setData] = useState<TaskData>({ id: "", title: "", date: "", durationStart: "", durationEnd: "", status: "Upcoming", description: "", type: "", })
+  const [data, setData] = useState<TaskData>({ } as TaskData)
 
 
 
@@ -52,7 +52,7 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
 
             <Dropdown
               label={"Category"} 
-              onChange={(value) => setData({ ...data, type: value })} 
+              onChange={(value) => setData({ ...data, category: value })} 
               value={data.type || "General"} 
               options={[
                 {id: 0, title: "General"}, {id: 1, title: "Study"},{id: 2, title: "Checkup"}, {id: 3, title: "Fitness"}, {id: 4, title: "Meal"}, {id: 5, title: "Others"}
@@ -61,16 +61,22 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
 
             <Input label={"Description"} onChange={(e) => setData({ ...data, description: e.target.value })} value={data.description} type={"text"} />
 
-            <Button variant="secondary" type="button" className="p-2 w-full bg-purple text-white rounded"
+            {
+              user?.email ?
+              <Button variant="secondary" type="button" className="p-2 w-full bg-purple text-white rounded"
                 onClick={() => 
                     task ?
                     updateTask(task.id, { ...data })
                     :
-                    addNewTask({...data }, user.email || "")
+                    addNewTask({...data, user: user?.email || ""})
                 }
             >
                 {loading ? <Spinner className="animate-spin text-[20px]" /> : "Submit"}
             </Button>
+            :
+            ""
+            }
+            
 
         </div>
       

@@ -4,12 +4,14 @@ import CalendarIcon from "@/assets/icons/calendar"
 import Button from "@/components/button/button"
 import NewTask from "@/components/modals/createTask"
 import TasksLayout from "@/components/modals/tasks"
+import { useTasks } from "@/context/tasksContext"
 import { Calendar, GridFour, List } from "@phosphor-icons/react"
 import { useState } from "react"
 
 export default function Taskspage () {
-  const [layout, setLayout] = useState("Calendar")
+  const [layout, setLayout] = useState("Grid")
   const [open, setOpen] = useState(false)
+  const tasks = useTasks().tasks
 
   return (
     <div className="p-4 flex md:flex-nowrap flex-wrap gap-4">
@@ -49,10 +51,9 @@ export default function Taskspage () {
           </div>
         </div>
 
-        <div className="border border-gray-500/[0.1] dark:bg-black/[0.5] min-h-[600px] rounded-lg flex-1 max-h-screen overflow-y-auto">
-            <TasksLayout tasks={[
-                {id: "0", date: "2025-08-02", durationStart: "05:45", durationEnd: "06:45", status: "pending", title: "Design and development of flashnotes", description: "Project management dashboard for a crypto exchange platform. Highlights of feature" },
-              ]} value={new Date()} layout={layout} />
+        <div className="min-h-[600px] rounded-lg flex-1 max-h-screen overflow-y-auto">
+          
+            <TasksLayout tasks={tasks} value={new Date()} layout={layout} />
         </div>
       </div>
 

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="">
 
-        <header className="pt-16 min-h-screen bg-center bg-cover dark:bg-dark" style={{ backgroundImage: `url("/bg.svg")` }}>
+        <header className="pt-16 min-h-screen bg-center bg-cover dark:bg-dark">
           <div className="flex flex-col sm:gap-6 gap-4 sm:items-center md:p-[40px] p-6 md:w-[78%] mx-auto">
             <div className="flex items-center p-1 border border-gray-500/[0.2] rounded-full text-[10px] w-fit">
               <p className="md:p-2 p-1 px-4 rounded-full bg-primary/[0.1] text-primary font-semibold">An idea?</p>

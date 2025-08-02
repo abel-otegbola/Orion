@@ -5,7 +5,7 @@ import { ITodo } from "@/interface/note";
 import Link from "next/link";
 // import { useContext } from "react";
 
-export default function TodoCard({ todo, i }: { todo: ITodo, i: number }) {
+export default function TaskCard({ todo, i }: { todo: ITodo, i: number }) {
     // const { deleteTodo } = useContext(TodosContext)
     
 
@@ -14,9 +14,9 @@ export default function TodoCard({ todo, i }: { todo: ITodo, i: number }) {
       <p className="text-[8px]">{todo.createdAt}</p>
       <div className="flex flex-col gap-4 py-1">
         <Link href="/todos" className="font-semibold text-md">{todo.title}</Link>
-        <div className="flex justify-between items-center">
-          <p className="opacity-[0.7] text-[10px] py-1 flex-1 flex items-end">1245</p>
-          <p className="opacity-[0.7] text-[10px] py-1 flex-1 flex items-end">10 Flashcards</p>
+        <div className="flex justify-between items-center w-full">
+          <p className="opacity-[0.7] text-[10px] py-1 flex items-end">10 Milestones</p>
+          <p className="text-[10px] py-1 flex items-end text-white p-[2px] px-2 rounded text-white-600 border border-green-600/[0.5]">2 Completed</p>
         </div>
         <Link href="/todos" className="font-semibold text-[10px]">{todo.description}</Link>
       </div>
