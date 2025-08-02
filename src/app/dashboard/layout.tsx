@@ -14,6 +14,10 @@ import CalendarIcon from "@/assets/icons/calendar";
 import TeamIcon from "@/assets/icons/team";
 import LogoutIcon from "@/assets/icons/logout";
 import Image from "next/image";
+import { useTasks } from "@/context/tasksContext";
+import { TaskData } from "@/interface/task";
+import { dateParser } from "@/helpers/dateParser";
+import Calendar from "react-calendar";
 
 
 export interface Link {
@@ -26,7 +30,9 @@ export default function Layout({
     children: React.ReactNode;
   }>) {
     const [open, setOpen] = useState(false)
+    const [value, setValue] = useState(new Date())
     const { logOut, user } = useContext(AuthContext)
+    const tasks = useTasks().tasks;
     const pathname = usePathname();
 
     const generalLinks: Link[] = [
@@ -36,6 +42,8 @@ export default function Layout({
         { id: 4, label: "Teams management", icon: <TeamIcon className="w-[20px] h-[20px]" />, link: "/dashboard/teams", subtext: "soon" },
         { id: 5, label: "Settings", icon: <SettingsIcon className="w-[20px] h-[20px]" />, link: "/settings" },
     ]
+
+    const booked = tasks?.filter(item => item.user === user?.email).map((task: TaskData) => dateParser(task.date));
 
     const modalRef = useOutsideClick(setOpen, false)
 
@@ -48,7 +56,7 @@ export default function Layout({
                         <Avatar user={{ id: "0", email: user?.email || "", fullname: user?.email || "user" }} />
                         }
                     </button>
-                    <div className={`flex flex-col justify-between md:w-full w-[280px] md:h-screen h-[100vh] md:sticky fixed md:top-0 top-0 py-4 px-4 right-0 md:bg-gray-100/[0.1] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border-transparent border-x-gray-500/[0.1] overflow-hidden z-[5] transition-all duration-700 ${open ? "translate-x-[0]": "md:translate-x-[0] translate-x-[130%]"}`}>  
+                    <div className={`flex flex-col justify-between md:w-full w-[280px] md:h-screen h-[100vh] md:sticky fixed md:top-0 top-0 py-4 px-4 right-0 md:bg-gray-100/[0.1] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border-transparent border-x-gray-500/[0.1] overflow-y-auto overflow-x-hidden z-[5] transition-all duration-700 ${open ? "translate-x-[0]": "md:translate-x-[0] translate-x-[130%]"}`}>  
                        
                         <div className="flex flex-col gap-1">
                             <Link href="/" className="flex font-bold pt-2 pb-6 md:px-[1px] px-2 text-[18px]">
@@ -66,12 +74,22 @@ export default function Layout({
                                     )
                             })
                             }
+                            <button onClick={() => logOut()} className={`w-full flex items-center my-[3px] px-4 py-1 hover:bg-gray-500/[0.06] hover:font-medium rounded`}>
+                                <span className="w-[30px] text-lg opacity-[0.6]"><LogoutIcon className="w-[20px] h-[20px]" /></span>
+                                <span className="py-2 break-normal">Logout</span>
+                            </button>
                         </div>
-                        
-                        <button onClick={() => logOut()} className={`w-full flex items-center my-[3px] px-4 py-1 hover:bg-gray-500/[0.06] hover:font-medium rounded`}>
-                            <span className="w-[30px] text-lg opacity-[0.6]"><LogoutIcon className="w-[20px] h-[20px]" /></span>
-                            <span className="py-2 break-normal">Logout</span>
-                        </button>
+
+                        <div className="w-full dark:bg-[#000]/[0.2] dark:text-white text-[10px] mt-[60px]">
+                            <Calendar onChange={() => setValue} value={value} tileClassName={( { date }) => {
+                                let classes = "tile";
+
+                                if(booked?.some((b) => b.getTime() === date.getTime())) {
+                                    classes = `${classes} dotted`;
+                                }
+                                return classes;
+                            }} />
+                        </div>
                     </div>
                 </div>
 

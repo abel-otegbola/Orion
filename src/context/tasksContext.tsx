@@ -1,20 +1,27 @@
 'use client'
 import { useLocalStorage } from "@/customHooks/useLocaStorage"
-import { db } from "@/firebase/firebase"
 import { TaskData } from "@/interface/task"
-import { addDoc, AddPrefixToKeys, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
-import { createContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
+import { databases } from "../appwrite/appwrite";
+import { ID, Query } from "appwrite";
 
 type tasksContextProps = {
     tasks: TaskData[];
     addNewTask: (newTask: TaskData, user: string) => void;
-    updateTask: (id: string, data: TaskData, user: string) => void;
+    updateTask: (id: string, data: TaskData) => void;
     deleteTask: (id: string, user: string) => void;
-    getAllTasks: (user: string) => void;
     loading: boolean;
 }
 
+
+export const schedules_DATABASE_ID = "66303297001afa9a6892"; // Replace with your database ID
+export const schedules_COLLECTION_ID = "663032af0038121a83d2"; // Replace with your collection ID
+
 export const TasksContext = createContext({} as tasksContextProps)
+
+export function useTasks() {
+  return useContext(TasksContext);
+}
 
 export default function TasksProvider ({
     children,
@@ -24,88 +31,51 @@ export default function TasksProvider ({
     const [tasks, setTasks] = useLocalStorage("tasks", [])
     const [loading, setLoading] = useState(false)
 
-    const addNewTask = async (newTask: TaskData, user: string) => {
-        setLoading(true)
-        if(user === "") {
-            setTasks([ ...tasks, { ...newTask, createdAt: new Date(), updatedAt: new Date(), status: "pending", duration: "", user } ])
-        }
-        else {
-            try {
-                console.log(newTask)
-                const docRef = await addDoc(collection(db, "tasks"), { ...newTask, createdAt: new Date(), updatedAt: new Date(), status: "pending", duration: "", user });
-                console.log(docRef)
-                getAllTasks(user)
-                setLoading(false)
-            }
-            catch(e) {
-                console.log(e)
-                setLoading(false)
-            }
-        }
-    }
-        
-    const updateTask = async (id: string, data: AddPrefixToKeys<string, TaskData>, user: string) => {
-        setLoading(true)
-        if(user === "") {
-            setTasks(tasks.map((task: TaskData) => {
-                if(task.id === id) {
-                    return data
-                }
-                else return task
-            }))
-        }
-        else {
-            try {
-                const docRef = await updateDoc(doc(db, "tasks", id), data);
-                console.log(docRef)
-                getAllTasks(user)
-                setLoading(false)
-            }
-            catch(e) {
-                console.log(e)
-                setLoading(false)
-            }
-        }
-        
+    async function init() {
+        const response = await databases.listDocuments(
+            schedules_DATABASE_ID,
+            schedules_COLLECTION_ID,
+            [Query.orderDesc("$createdAt"), Query.limit(10)]
+        );
+        setTasks(response.documents);
     }
 
-    const deleteTask = async (id: string, user: string) => {
-        setLoading(true)
-        if(user === "") {
-            setTasks(tasks.filter((task: TaskData) => task.id !== id))
-        }
-        else {
-            try {
-                const docRef = await deleteDoc(doc(db, "tasks", id));
-                console.log(docRef)
-                getAllTasks(user)
-                setLoading(false)
-            }
-            catch(e) {
-                console.log(e)
-                setLoading(false)
-            }
-        }
+    async function addNewTask(task: TaskData) {
+        const response = await databases.createDocument(
+            schedules_DATABASE_ID,
+            schedules_COLLECTION_ID,
+            ID.unique(),
+            task
+        );
+        setTasks((tasks: TaskData[]) => [response, ...tasks].slice(0, 10));
+    }
         
+    async function updateTask(id: string, data: TaskData) {
+        const response = await databases.updateDocument(
+            schedules_DATABASE_ID,
+            schedules_COLLECTION_ID,
+            id,
+            { status: data }
+        );
+        console.log(response)
+        init()
     }
 
-    const getAllTasks = async (user: string) => {
-        try {
-            const arr: {id: string}[] = []
-            const querySnapshot = await getDocs(query(collection(db, "tasks"), where("user", "==", user)));
-            querySnapshot.forEach((doc) => {
-                arr.push({...doc.data(), id: doc.id})
-            })
-            console.log(arr)
-            setTasks(arr)
-        }
-        catch(e) {
-            console.log(e)
-        }
+
+    const deleteTask = async (id: string) => {
+        setLoading(true)
+        await databases.deleteDocument(schedules_DATABASE_ID, schedules_COLLECTION_ID, id);
+        setTasks((tasks: TaskData[]) => tasks.filter((idea) => idea.$id !== id));
+        await init();
     }
+      
+    useEffect(() => {
+        init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-        <TasksContext.Provider value={{ tasks, getAllTasks, addNewTask, updateTask, deleteTask, loading }}>
+        <TasksContext.Provider value={{ tasks, addNewTask, updateTask, deleteTask, loading }}>
             {children}
         </TasksContext.Provider>
     )

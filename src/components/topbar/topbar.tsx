@@ -2,7 +2,7 @@
 import { ReactNode, useContext, useEffect, useState } from "react"
 import Tab from "../tab/tab"
 import Link from "next/link"
-import { SignIn, SignOut } from "@phosphor-icons/react"
+import { SignIn } from "@phosphor-icons/react"
 import Avatar from "../avatar/avatar"
 import { useOutsideClick } from "@/helpers/useClickOutside"
 import Menu from "../navMenu/navMenu"
@@ -15,6 +15,7 @@ import CalendarIcon from "@/assets/icons/calendar"
 import BellIcon from "@/assets/icons/bell"
 import ThemeSelector from "../themeSelector/themeSelector"
 import Image from "next/image"
+import LogoutIcon from "@/assets/icons/logout"
 
 type navTab =  {
     id: number | string,
@@ -72,9 +73,9 @@ function Topbar() {
                     {
                         open ? <Menu list={
                             [
-                                !user ? {id: "1", title: "Dashboard", icon: <HomeIcon />, href: "/dashboard"} : {id: "0", title: "Get started", icon: <SignIn />, href: "/login"},
+                                user ? {id: "1", title: "Dashboard", icon: <HomeIcon />, href: "/dashboard"} : {id: "0", title: "Get started", icon: <SignIn />, href: "/login"},
                                 {id: "2", title: "Settings", icon: <SettingsIcon />, href: "/settings"},
-                                user ? {id: "3", title: "Logout", icon: <SignOut />, href: "#"} : {id: "0", title: "Login", icon: <SignIn />, href: "/login"},
+                                user ? {id: "3", title: "Logout", icon: <LogoutIcon />, href: "#"} : {id: "0", title: "Login", icon: <SignIn />, href: "/login"},
                             ]
                         } close={setOpen} /> 
                         : ""

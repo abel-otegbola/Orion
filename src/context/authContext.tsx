@@ -1,10 +1,11 @@
 'use client'
 import { useLocalStorage } from "@/customHooks/useLocaStorage";
 import { app } from "../firebase/firebase";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User } from "firebase/auth";
-import { createContext, ReactNode, useEffect, useState } from 'react';
-import { Toaster, toast } from "react-hot-toast";
-import { useRouter } from "nextjs-toploader/app";
+import { GoogleAuthProvider, getAuth, signInWithPopup, User } from "firebase/auth";
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { Toaster } from "react-hot-toast";
+import { account } from "@/appwrite/appwrite";
+import { ID } from "appwrite";
 
 type values = {
     user: User;
@@ -19,43 +20,48 @@ type values = {
 
 export const AuthContext = createContext({} as values);
 
+export function useUser() {
+  return useContext(AuthContext);
+}
+
 const auth = getAuth(app)
 
 const AuthProvider = ({ children }: { children: ReactNode}) => {
     const [user, setUser] = useLocalStorage("user", null);
     const [popup, setPopup] = useState({ type: "", msg: "" });
     const [loading, setLoading] = useState(false);
-    const router = useRouter()
 
     const formatError = (msg: string) => {
         return msg.replace("Firebase: Error (auth/", "").replace("-", " ").replace(")", "")
     }
 
-    const signIn = (email: string, password: string) => {
+    async function signIn(email: string, password: string) {
         setLoading(true)
-        signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            setPopup({ type: "success", msg: "Login Successful" })
+        await account.createSession(email, password)
+            .then(response => {
+            setPopup({ type: "success", msg: "Login successful" })
+            setUser(response)
             setLoading(false)
-            router.push("/")
         })
-        .catch((error) => {
-            setPopup({ type: "error", msg: formatError(error.message) })
+        .catch(error => {
+            setLoading(true)
+            setPopup({ type: "error", msg: error.message })
             setLoading(false)
-        });
+        })
     }
 
-    const signUp = (email: string, password: string) => {
+    async function signUp(email: string, password: string) {
         setLoading(true)
-        createUserWithEmailAndPassword(auth, email, password)
+        await account.create(ID.unique(), email, password)
         .then(() => {
-            setLoading(false)
-            router.push("/")
+            setPopup({ type: "success", msg: "Registered successful" })
+            signIn(email, password);
         })
-        .catch((error) => {
-            setPopup({ type: "error", msg: formatError(error.message) })
+        .catch(error => {
+            setLoading(true)
+            setPopup({ type: "error", msg: error.message })
             setLoading(false)
-        });
+        })
     }
     
     const socialSignIn = (type: string) => {
@@ -78,29 +84,25 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
         }
     }
 
-    const logOut = () => {
-        signOut(auth)
-        .then(() => {
-            setPopup({ type: "success", msg:  "Logout Successful" })
-          }).catch((error) => {
-            setPopup({ type: "error", msg: formatError(error.message) })
-          });
+    async function logOut() {
+        await account.deleteSession("current");
+        setUser(null);
+    }
+
+    async function init() {
+        try {
+            const loggedIn = await account.get();
+            setUser(loggedIn);
+        } catch {
+            setUser(null);
+        }
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth,(user) => {
-            setUser(user)
-        })
-    }, [setUser]);
+        init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    useEffect(() => {
-        if (popup?.type === "success") {
-            toast.success(popup.msg)
-        }
-        if (popup?.type === "error") {
-            toast.error(popup.msg);
-        }
-      }, [popup]);
 
     return (
         <AuthContext.Provider value={{ user, popup, loading, setPopup, signIn, signUp, socialSignIn, logOut }}>
