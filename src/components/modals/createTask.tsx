@@ -64,7 +64,7 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
             <Button variant="secondary" type="button" className="p-2 w-full bg-purple text-white rounded"
                 onClick={() => 
                     task ?
-                    updateTask(task.id, { ...data }, user.email || "")
+                    updateTask(task.id, { ...data })
                     :
                     addNewTask({...data }, user.email || "")
                 }
