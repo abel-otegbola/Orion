@@ -44,7 +44,7 @@ export default function Registerpage() {
 
                                     <Input name="password" label="" value={values.password} onChange={handleChange} type={"password"} error={touched.password ? errors.password : ""} placeholder="Password" leftIcon={<LockKey size={16}/>}/>
 
-                                    <Button size="full" className="py-3">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Register"}</Button>
+                                    <Button size="md" className="py-3">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Register"}</Button>
 
                                 </form>
                             )}

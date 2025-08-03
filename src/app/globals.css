@@ -296,3 +296,26 @@ body {
 .react-time-picker__clock--closed {
 	display: none;
 }
+@keyframes scan-border {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.scan-border::after {
+	content: '';
+	position: absolute;
+	inset: -4px;
+	border-radius: 12px;
+	background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ef4444, #facc15, #3b82f6);
+	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask-composite: destination-out;
+			mask-composite: exclude;
+	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	mask-composite: exclude;
+	z-index: -1;
+	animation: scan-border 4s linear infinite;
+}

@@ -3,7 +3,7 @@ import { useLocalStorage } from "@/customHooks/useLocaStorage";
 import { app } from "../firebase/firebase";
 import { GoogleAuthProvider, getAuth, signInWithPopup, User } from "firebase/auth";
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { account } from "@/appwrite/appwrite";
 import { ID } from "appwrite";
 import { useRouter } from "next/navigation";
@@ -103,6 +103,14 @@ const AuthProvider = ({ children }: { children: ReactNode}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(() => {
+        if(popup.type === "success") {
+            toast.success(popup.msg)
+        }
+        else if(popup.type === "error") {
+            toast.error(popup.msg)
+        }
+    }, [popup])
 
     return (
         <AuthContext.Provider value={{ user, popup, loading, setPopup, signIn, signUp, socialSignIn, logOut }}>

@@ -10,21 +10,21 @@ import Link from "next/link";
 import { useContext } from "react";
 
 export default function Loginpage() {
-    const { signIn, socialSignIn } = useContext(AuthContext)
+    const { signIn, socialSignIn, loading } = useContext(AuthContext)
     
     return (
-        <div className="min-h-[400px] flex mt-4 md:mx-[12%] sm:items-center justify-between">
+        <div className="min-h-[400px] absolute top-0 left-0 w-full h-full z-[50] flex pt-4 md:px-[12%] sm:items-center justify-between bg-white dark:bg-dark">
 
             <div className="flex w-full">
                 <div className="sm:w-[550px] mx-auto w-full p-12">
                     
-                    <div className="flex flex-col items-center gap-6 md:p-[5%] p-2">
+                    <div className="flex flex-col gap-6 md:p-[5%] p-2 bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%">
                         <div>
-                            <h1 className="font-bold text-[32px] text-center">Welcome</h1>
-                            <p className="mt-2 mb-3 text-center">Sign in with your credentials to get back into the app</p>
+                            <h1 className="font-bold text-[24px]">Sign in</h1>
+                            <p className="mt-2 mb-3">Sign in with your credentials to get back into the app</p>
                         </div>
 
-                        <Button size="full" onClick={() => socialSignIn("Google")} className=""><GoogleIcon width={20} /></Button>
+                        <Button size="md" onClick={() => socialSignIn("Google")} className=""><GoogleIcon width={16} />Signin with Google</Button>
 
                         <p>OR</p>
 
@@ -51,7 +51,7 @@ export default function Loginpage() {
 
                                     <Input name="password" label="" value={values.password} onChange={handleChange} type={"password"} error={touched.password ? errors.password : ""} placeholder="Password" leftIcon={<LockKey size={16}/>}/>
 
-                                    <Button size="full" className="py-3">{ isSubmitting ? <Spinner size={16} className="animate-spin" /> : "Login"}</Button>
+                                    <Button size="lg" className="bg-primary">{ (isSubmitting || loading) ? <Spinner size={16} className="animate-spin" /> : "Login"}</Button>
 
                                 </form>
                             )}

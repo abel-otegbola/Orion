@@ -20,12 +20,12 @@ export default function Input({ className, disabled, label, name, value, type, o
 
 
     return (
-        <div className="flex flex-col w-full gap-1">
+        <div className="flex flex-col gap-1">
             { label ? <label htmlFor={name} className={`${focus ? "text-primary/[0.5]" : ""}`}>{label}</label> : "" }
 
-            <div className={`flex items-center gap-1 relative rounded-lg bg-white dark:bg-dark dark:text-gray w-full border p-1 duration-500 
+            <div className={`flex items-center gap-1 relative bg-white dark:bg-transparent dark:text-gray w-full border-b p-1 duration-500 
                 ${error && !focus ? "border-red-500 text-red-500 " : "border-gray/[0.3] dark:border-gray-500/[0.4]"}
-                ${focus ? "border border-primary shadow-input-active" : ""}
+                ${focus ? "border-b border-primary shadow-input-active" : ""}
                 ${className}
             `}>
                 <span className={`${!focus ? "opacity-[0.4]": "text-primary"} ${leftIcon ? "pl-2" : ""}`}>{ leftIcon }</span>

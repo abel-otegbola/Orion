@@ -5,8 +5,9 @@ import CalendarIcon from "@/assets/icons/calendar";
 import FileIcon from "@/assets/icons/file";
 import Avatar from "@/components/avatar/avatar";
 import TaskCard from "@/components/cards/taskCard";
+import TasksFlow from "@/components/flows/tasksFlow";
 import TasksLayout from "@/components/modals/tasks";
-import { NotesTable } from "@/components/table/notesTable";
+import Table from "@/components/table/table";
 import ThemeSelector from "@/components/themeSelector/themeSelector";
 import { AuthContext } from "@/context/authContext";
 // import { ArrowRight } from "@phosphor-icons/react";
@@ -44,6 +45,8 @@ export default function Home() {
         <section className="grid xl:grid-cols-2 md:grid-cols-1 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start p-4">
 
           <div className="grid grid-cols-2 gap-4">
+
+            <TasksFlow />
             {/* <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
               <div className="flex justify-between p-1">
                 <Link href="/todos" className="text-md">Investment</Link>
@@ -106,7 +109,7 @@ export default function Home() {
                 <FileIcon width={24} />
                 <p>Tasks</p>
             </h2>
-            <NotesTable data={[]} fields={["Title", "Due date", "Assigned to"]} />
+            <Table data={[]} fields={["Title", "Due date", "Assigned to"]} />
         </div>
 
       </section>

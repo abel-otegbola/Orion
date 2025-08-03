@@ -9,7 +9,7 @@ interface CheckboxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     name?: string;
     error?: string | undefined;
     size?: number | undefined;
-    onCheck: (aug0: boolean) => void;
+    onCheck?: (aug0: boolean) => void;
 }
 
 export default function Checkbox({ className, disabled, label, onCheck, name, size, ...props }: CheckboxProps) {
@@ -20,7 +20,7 @@ export default function Checkbox({ className, disabled, label, onCheck, name, si
     const handleChecked = () => {
         setAnimate(true)
         setTimeout(() => {
-            onCheck(!checked)
+            if(onCheck) onCheck(!checked) 
             setChecked(!checked); setFocus(true)
             setAnimate(false)
         }, 300)

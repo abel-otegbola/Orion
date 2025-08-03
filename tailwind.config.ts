@@ -21,6 +21,8 @@ const config: Config = {
       },
       animation: {
         "spin-slow": "wiggle 0.7s linear finite",
+        rotate: "rotate 5s linear infinite",
+
       },
       keyframes: {
         wiggle: {
@@ -30,6 +32,10 @@ const config: Config = {
           "100%": {
             transform: "rotate(5deg)",
           },
+        },
+        rotate: {
+          "0%": { transform: "rotate(0deg) scale(10)" },
+          "100%": { transform: "rotate(-360deg) scale(10)" },
         },
       }
     },

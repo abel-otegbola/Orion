@@ -2,6 +2,7 @@ import { TaskData, Value } from "@/interface/task";
 import moment from 'moment'
 import TaskGrid from "../grids/tasksGrid";
 import TaskCard from "../cards/taskCard";
+import Table from "../table/table";
 
 type TaskLayoutProps = {
     tasks: TaskData[],
@@ -69,13 +70,7 @@ export default function TasksLayout({ tasks, value, layout }: TaskLayoutProps) {
                         }
                     </div>
                 :
-                    <div className="">
-                        {
-                            tasks.map(element => ( 
-                                <TaskGrid key={element.id} element={element} layout={layout} />
-                            ))
-                        }
-                    </div>
+                    <Table data={tasks} fields={["title", "date", "durationStart", "durationEnd", "status"]}  />
             }
         </div>
     )
