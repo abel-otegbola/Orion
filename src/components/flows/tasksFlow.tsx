@@ -2,11 +2,9 @@ import CalendarIcon from "@/assets/icons/calendar";
 import { TaskData } from "@/interface/task";
 import { useEffect, useState } from "react";
 import Button from "../button/button";
-import Input from "../input/input";
 import toast, { Toaster } from "react-hot-toast";
 import { Star, X } from "@phosphor-icons/react";
 import TaskList from "./prioritySection";
-import Table from "../table/table";
 
 export default function TasksFlow() {
     const [tasks, setTasks] = useState<TaskData[]>([])
@@ -43,6 +41,10 @@ export default function TasksFlow() {
         }
     }, [popup])
 
+    const finishOnboarding = () => {
+
+    }
+
     return (
     <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] text-[12px] backdrop-blur-sm flex items-center justify-center z-[100]">        
         <div className="flex flex-col p-6 px-6 gap-4 sm:max-w-[400px] shadow-lg border border-gray-500/[0.2] rounded-lg w-full overflow-auto bg-white dark:bg-dark dark:bg-gradient-to-tr from-dark via-[#552B2620] to-dark w-full">
@@ -66,7 +68,7 @@ export default function TasksFlow() {
             <div className="relative flex overflow-hidden py-8 min-h-[300px]">
                 <div className={`absolute top-0 left-0 flex flex-col gap-2 w-full duration-500 ${flow === 0 ? "translate-x-[0%]" : "translate-x-[-100%]"}`}>
                     
-                    <div className="flex flex-col p-4 gap-1 rounded bg-gray-700/[0.09] overflow-y-auto h-[230px]">
+                    <div className="flex flex-col p-4 gap-1 rounded bg-gray-700/[0.09] overflow-y-auto h-[210px]">
                         {
                             tasks.map(task => (
                                 <div key={task.id} className="flex items-center justify-between gap-8 rounded shadow-lg border border-gray-500/[0.2] p-2">
@@ -79,9 +81,9 @@ export default function TasksFlow() {
                         }
                     </div>
 
-                    <div className="flex p-2 rounded shadow-lg bg-dark border border-gray-500/[0.2]">
-                        <Input value={taskInput} onChange={(e) => setTaskInput(e.target.value)} placeholder="Write a task, idea, or goal…" className="p-[2px] border-transparent"/>
-                        <Button size="sm" variant="secondary" className="w-full" onClick={() => handleAddTask()}>Add</Button>
+                    <div className="flex p-2 rounded shadow-lg bg-slate-100 dark:bg-dark border border-gray-500/[0.2]">
+                        <input value={taskInput} onChange={(e) => setTaskInput(e.target.value)} placeholder="Write a task, idea, or goal…" className="flex-1 w-full p-[2px] bg-transparent outline-none border-none"/>
+                        <Button size="sm" className="w-full" onClick={() => handleAddTask()}>Add</Button>
                     </div>
                     <p className="text-[8px] justify-end py-0 flex items-center gap-1">
                         <Star className="text-fuchsia-500" />
@@ -97,26 +99,37 @@ export default function TasksFlow() {
                 
                 <div className={`absolute top-0 left-0 flex flex-col gap-4 w-full duration-500 ${flow === 2 ? "translate-x-[0%]" : flow < 2 ? "translate-x-[100%]" : "translate-x-[-100%]"}`}>
                     <h2 className="py-2 border-b border-gray-500/[0.2]">Add start and end time for each tasks</h2>
-                    <div className="flex flex-col rounded bg-gray-700/[0.09] overflow-y-auto h-[230px]">
-                        {/* {
-                            tasks.map(task => (
-                                <div key={task.id} className="flex items-center justify-between gap-8 rounded shadow-lg border border-gray-500/[0.2] p-2">
-                                    <p className="flex gap-2 items-center w-[100%]">
+                    <div className="flex flex-col rounded bg-gray-700/[0.09] overflow-y-auto h-[230px] p-2 border border-gray-500/[0.2]">
+                        <div className="flex flex-col">
+                            <div className="grid grid-cols-3 p-2">
+                                <p>Title</p>
+                                <p>Start time</p>
+                                <p>End time</p>
+                            </div>
+                            {
+                            tasks.map((task, i) => (
+                                <div key={task.id} className={`text-[10px] grid grid-cols-3 p-2 ${i%2 === 0 ? "border border-primary/[0.08]" : "bg-primary/[0.04] border border-primary/[0.1]"}`}>
+                                    <p className="flex gap-2 items-center">
                                         {task.title}
                                     </p>
-                                    <Input type="number" className="w-[30px] py-0" onChange={() => {}}/>
+                                    <input type="time" className="w-[60px] p-[2px] border border-gray-500/[0.2] outline-primary bg-transparent" />
+                                    <input type="time" className="w-[60px] p-[2px] border border-gray-500/[0.2] outline-primary bg-transparent" />
                                 </div>
                             ))
-                        } */}
-                        <Table data={tasks} fields={["title", "durationStart", "durationEnd"]} />
+                            }
+                        </div>
                     </div>
                 </div>
 
+                <div className={`absolute top-0 left-0 flex flex-col items-center justify-center h-full gap-4 w-full duration-500 ${flow === 3 ? "translate-x-[0%]" : flow < 3 ? "translate-x-[100%]" : "translate-x-[-100%]"}`}>
+                    <h2 className="py-2 text-[14px]">Congratulations</h2>
+                    <p>Now you can start tracking your tasks</p>                    
+                </div>
             </div>
 
             <div className="flex items-center justify-between">
-                <Button size="sm" onClick={() => setFlow(flow-1)}>Back</Button>
-                <Button size="sm" variant="secondary" className="bg-primary" onClick={() => tasks.length > 0 ? setFlow(flow+1): setPopup({ type: "error", msg: "Please add a task to continue" })}>Save and Continue</Button>
+                <Button size="sm" className={`${flow < 1 ? "hidden" : "flex"}`} onClick={() => setFlow(flow-1)}>Back</Button>
+                <Button size="sm" variant="secondary" className="bg-primary" onClick={() => flow === 3 ? finishOnboarding() : tasks.length > 0 ? setFlow(flow+1) : setPopup({ type: "error", msg: "Please add a task to continue" })}>{flow < 3 ? "Save and Continue" : "Finish"}</Button>
             </div>
 
         </div>

@@ -20,12 +20,12 @@ export default function Input({ className, disabled, label, name, value, type, o
 
 
     return (
-        <div className="flex flex-col gap-1">
-            { label ? <label htmlFor={name} className={`${focus ? "text-primary/[0.5]" : ""}`}>{label}</label> : "" }
+        <>
+            { label ? <label htmlFor={name} className={`mb-1 ${focus ? "text-primary/[0.5]" : ""}`}>{label}</label> : "" }
 
             <div className={`flex items-center gap-1 relative bg-white dark:bg-transparent dark:text-gray w-full border-b p-1 duration-500 
                 ${error && !focus ? "border-red-500 text-red-500 " : "border-gray/[0.3] dark:border-gray-500/[0.4]"}
-                ${focus ? "border-b border-primary shadow-input-active" : ""}
+                ${focus ? "border-primary shadow-input-active" : ""}
                 ${className}
             `}>
                 <span className={`${!focus ? "opacity-[0.4]": "text-primary"} ${leftIcon ? "pl-2" : ""}`}>{ leftIcon }</span>
@@ -50,6 +50,6 @@ export default function Input({ className, disabled, label, name, value, type, o
                     <span tabIndex={1} className="p-2 cursor-pointer" title="toggle show password" aria-checked={show} onClick={() => setShow(!show)}>{ show ? <Eye /> : <EyeSlash /> }</span>
                 : "" }
             </div>
-        </div>
+        </>
     )
 }
