@@ -1,3 +1,4 @@
+'use client'
 import { tasksLayout } from "@/helpers/tasksLayout"
 import { useOutsideClick } from "@/helpers/useClickOutside"
 import { useState } from "react"

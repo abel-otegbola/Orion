@@ -1,3 +1,4 @@
+'use client'
 import CalendarIcon from "@/assets/icons/calendar";
 import { TaskData } from "@/interface/task";
 import { useEffect, useState } from "react";
