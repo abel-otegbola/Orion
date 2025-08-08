@@ -1,22 +1,25 @@
 'use client'
 
-import BellIcon from "@/assets/icons/bell";
 import CalendarIcon from "@/assets/icons/calendar";
 import FileIcon from "@/assets/icons/file";
 import Avatar from "@/components/avatar/avatar";
+import Button from "@/components/button/button";
 import TaskCard from "@/components/cards/taskCard";
 import TasksFlow from "@/components/flows/tasksFlow";
 import TasksLayout from "@/components/modals/tasks";
 import Table from "@/components/table/table";
 import ThemeSelector from "@/components/themeSelector/themeSelector";
 import { AuthContext } from "@/context/authContext";
+import { useTasks } from "@/context/tasksContext";
 // import { ArrowRight } from "@phosphor-icons/react";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 
 export default function Home() {
   const { user } = useContext(AuthContext)
+  const [taskFlow, setTaskFlow] = useState(false)
+  const tasks = useTasks().tasks
   
   return (
     <main className="w-full gap-6">
@@ -30,7 +33,7 @@ export default function Home() {
           </div>
           <h1 className="xl:block text-center hidden font-bold text-[20px]">{new Date().getUTCHours() + ":" + new Date().getUTCMinutes()}</h1>
           <div className="flex gap-6 justify-end items-center">
-            <p><BellIcon /></p>
+            <Button onClick={() => setTaskFlow(!taskFlow)} >Get started</Button>
             <ThemeSelector />
             <button className="flex gap-2">
                 <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email || "user" }} />
@@ -43,43 +46,45 @@ export default function Home() {
         </div>
 
         <section className="grid xl:grid-cols-2 md:grid-cols-1 max-[480px]:grid-cols-1 md:gap-6 gap-4 justify-center items-start p-4">
-
-          <div className="grid grid-cols-2 gap-4">
-
-            <TasksFlow />
-            {/* <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
-              <div className="flex justify-between p-1">
-                <Link href="/todos" className="text-md">Investment</Link>
-                <button><ArrowRight size={16}/></button>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <p className="text-[20px] font-medium p-1 flex-1 flex items-end">24</p>
-                <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
-              </div>
+          <div>
+            <div className="flex flex-col gap-2 mb-6">
+              <h2 className="text-[16px]">Welcome, {user?.email?.split("@")[0]}</h2>
+              <p>These are your recent spaces</p>
             </div>
+            <div className="grid grid-cols-2 gap-4">
 
-            <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
-              <div className="flex justify-between p-1">
-                <Link href="/todos" className="text-md">Todo-list</Link>
-                <button><ArrowRight size={16}/></button>
+              { taskFlow ? <TasksFlow /> : "" }
+              {/* <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
+                <div className="flex justify-between p-1">
+                  <Link href="/todos" className="text-md">Investment</Link>
+                  <button><ArrowRight size={16}/></button>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <p className="text-[20px] font-medium p-1 flex-1 flex items-end">24</p>
+                  <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
+                </div>
               </div>
 
-              <div className="flex justify-between items-center">
-                <p className="text-[20px] font-medium p-1 flex-1 flex items-end">12</p>
-                <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
-              </div>
-            </div> */}
+              <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
+                <div className="flex justify-between p-1">
+                  <Link href="/todos" className="text-md">Todo-list</Link>
+                  <button><ArrowRight size={16}/></button>
+                </div>
 
-            {
-              [
-                {id: "0", createdAt: "Sun 25th, Jan 2025", title: "Design and development of flashnotes", description: "Project management dashboard for a crypto exchange platform. Highlights of feature" },
-                {id: "1", createdAt: "Mon 15th, Jan 2025", title: "Paystack Developers Meeting", description: "Project management dashboard for a crypto exchange platform. Highlights of feature" },
-              ].map((todo, i) => (
-                 <TaskCard key={todo.id} todo={todo} i={i} />
-                ))
-            }
+                <div className="flex justify-between items-center">
+                  <p className="text-[20px] font-medium p-1 flex-1 flex items-end">12</p>
+                  <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
+                </div>
+              </div> */}
 
+              {
+                tasks.map((todo, i) => (
+                  <TaskCard key={todo.id} todo={todo} i={i} />
+                  ))
+              }
+
+            </div>
           </div>
 
           <div className="flex flex-col gap-4 h-full">
@@ -92,11 +97,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <Link href={"/todos"} className="text-primary">View details</Link>
+              <Link href={"/dashboard/tasks"} className="text-primary">View details</Link>
             </div>
 
-            <div className="border border-gray-500/[0.1] rounded-lg flex-1 max-h-[340px] overflow-y-auto">
-                <TasksLayout tasks={[]} value={new Date()} layout={"Calendar"} />
+            <div className="border border-gray-500/[0.1] rounded-lg flex-1 max-h-[290px] overflow-y-auto">
+                <TasksLayout tasks={tasks} value={new Date()} layout={"Calendar"} />
             </div>
           </div>
 

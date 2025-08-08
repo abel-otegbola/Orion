@@ -11,14 +11,14 @@ export default function TaskCard({ todo, i }: { todo: ITodo, i: number }) {
 
     return (
       <div key={todo.id} className={`flex flex-col gap-6 md:p-4 p-3 rounded-[12px] border border-gray-500/[0.2] ${i === 0 ? "text-white bg-gradient-to-tr from-primary to-fuchsia-600" : "bg-white dark:bg-transparent dark:bg-gradient-to-tr from-[#552B26]/[0.4] via-[#331A23]/[0.4] to-[#110E13]/[0.4] shadow-md"}`}>
-      <p className="text-[8px]">{todo.createdAt}</p>
+      <p className="text-[8px]">{new Date(todo.createdAt || 0).toLocaleDateString("GR")}</p>
       <div className="flex flex-col gap-4 py-1">
-        <Link href="/todos" className="font-semibold text-md">{todo.title}</Link>
+        <Link href="/dashboard/tasks" className="font-semibold text-md">{todo.title}</Link>
         <div className="flex justify-between items-center w-full">
           <p className="opacity-[0.7] text-[10px] py-1 flex items-end">10 Milestones</p>
           <p className="text-[10px] py-1 flex items-end text-white p-[2px] px-2 rounded text-white-600 border border-green-600/[0.5]">2 Completed</p>
         </div>
-        <Link href="/todos" className="font-semibold text-[10px]">{todo.description}</Link>
+        <Link href="/dashboard/tasks" className="font-semibold text-[10px]">{todo.description}</Link>
       </div>
       <div className="flex flex-1 items-end">
         <span className={`w-[24px] h-[24px] rounded-full border-2 ${i === 0 ? "border-white bg-primary" : "border-black dark:border-gray-500 bg-white"}`}></span>
