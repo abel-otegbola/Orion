@@ -23,12 +23,12 @@ export default function TasksLayout({ tasks, value, layout }: TaskLayoutProps) {
                 <div className="pb-12 pt-0 w-full md:max-w-[90vw] max-w-[85vw]">
                         <div className="w-full overflow-x-auto">
                             
-                            <table className="table-auto w-full min-w-[700px]">
+                            <table className="table-auto w-full min-w-[400px]">
                                 <thead>
                                     <tr className="text-[12px] p-4">
                                         <th className="text-center"></th>
                                         {
-                                            [moment(value?.toString()).subtract(1, 'days'), moment(value?.toString()), moment(value?.toString()).add(1, 'days'), moment(value?.toString()).add(2, 'days'), moment(value?.toString()).add(3, 'days')].map(date => (
+                                            [moment(value?.toString()).subtract(1, 'days'), moment(value?.toString()), moment(value?.toString()).add(1, 'days')].map(date => (
                                             <th key={date.date()} className={`min-w-[100px] py-2 rounded ${moment(value?.toString()) === date ? "bg-red text-white" : ""}`}>{date.date()}</th> 
                                             ))
                                         }
@@ -41,7 +41,7 @@ export default function TasksLayout({ tasks, value, layout }: TaskLayoutProps) {
                                             <td className="px-2 flex h-full w-full">{date > 9 ? "" : "0"}{date}:00</td>
                                             
                                             {
-                                                [moment(value?.toString()).subtract(1, 'days'), moment(value?.toString()), moment(value?.toString()).add(1, 'days'), moment(value?.toString()).add(2, 'days'), moment(value?.toString()).add(3, 'days')].map(index => (
+                                                [moment(value?.toString()).subtract(1, 'days'), moment(value?.toString()), moment(value?.toString()).add(1, 'days')].map(index => (
                                                     <td key={index.date()} className="p-[2px] border border-gray-500/[0.1] relative">
                                                         {
                                                             tasks.filter(item => (item.durationStart.split(":")[0] === `${date > 9 ? "" : "0"}${date}` && item.date.split("-")[2] === `${index.date() > 9 ? "" : "0"}${index.date().toString()}`)).map(element => (

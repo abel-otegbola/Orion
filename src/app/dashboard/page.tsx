@@ -50,6 +50,10 @@ export default function Home() {
             <div className="flex flex-col gap-2 mb-6">
               <h2 className="text-[16px]">Welcome, {user?.email?.split("@")[0]}</h2>
               <p>These are your recent spaces</p>
+              <div className="flex mt-2 gap-2">
+                <Link href={"/tasks"} className="text-primary border border-primary/[0.5] p-1 px-2 rounded-lg">Create space</Link>
+                <Link href={"/tasks"} className="text-primary border border-primary/[0.5] p-1 px-2 rounded-lg">Create task</Link>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
 
@@ -100,7 +104,7 @@ export default function Home() {
               <Link href={"/dashboard/tasks"} className="text-primary">View details</Link>
             </div>
 
-            <div className="border border-gray-500/[0.1] rounded-lg flex-1 max-h-[290px] overflow-y-auto">
+            <div className="border border-gray-500/[0.1] rounded-lg flex-1 max-h-[300px] overflow-y-auto">
                 <TasksLayout tasks={tasks} value={new Date()} layout={"Calendar"} />
             </div>
           </div>
@@ -114,7 +118,7 @@ export default function Home() {
                 <FileIcon width={24} />
                 <p>Tasks</p>
             </h2>
-            <Table data={[]} fields={["Title", "Due date", "Assigned to"]} />
+            <Table data={tasks} fields={["title", "date", "durationStart", "durationEnd", "status"]}  />
         </div>
 
       </section>

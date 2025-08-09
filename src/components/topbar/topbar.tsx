@@ -2,7 +2,6 @@
 import { ReactNode, useContext, useEffect, useState } from "react"
 import Tab from "../tab/tab"
 import Link from "next/link"
-import { SignIn } from "@phosphor-icons/react"
 import Avatar from "../avatar/avatar"
 import { useOutsideClick } from "@/helpers/useClickOutside"
 import Menu from "../navMenu/navMenu"
@@ -48,15 +47,15 @@ function Topbar() {
 
     return (
         <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full border border-gray-500/[0.1] justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : "md:px-[5%] px-6"}`}>
-            <div className="md:w-[32%]">
-                <Link href="/" className="h-[30px] rounded text-[20px] flex flex-col justify-center px-2 font-bold">
+            <div className="md:w-[33%]">
+                <Link href="/" className="rounded text-[20px] flex flex-col justify-center px-2 font-bold">
                     <Image src="/logo.png" alt="logo" width={60} height={20} />
                     {/* <p>Hi 👋, {user?.email?.split("@")[0]}</p>
                     <p>Welcome back</p> */}
                 </Link>
             </div>
 
-            <nav className="flex justify-between md:static flex-1 items-center w-full p-4 fixed bottom-20 left-0 md:w-fit w-full md:border-none border border-gray-500/[0.1] items-center z-[10]">
+            <nav className="flex justify-between md:static flex-1 items-center w-full md:p-2 p-4 fixed bottom-20 left-0 md:w-fit w-full md:border-none border border-gray-500/[0.1] items-center z-[10]">
                 {
                     navTabs.map((tab: navTab) => (
                         <Tab key={tab.id} label={tab.label} href={tab.to} icon={tab.icon} />
@@ -73,9 +72,9 @@ function Topbar() {
                     {
                         open ? <Menu list={
                             [
-                                user ? {id: "1", title: "Dashboard", icon: <HomeIcon />, href: "/dashboard"} : {id: "0", title: "Get started", icon: <SignIn />, href: "/login"},
+                                user ? {id: "1", title: "Dashboard", icon: <HomeIcon />, href: "/dashboard"} : {id: "0", title: "Get started", icon: <LogoutIcon />, href: "/login"},
                                 {id: "2", title: "Settings", icon: <SettingsIcon />, href: "/settings"},
-                                user ? {id: "3", title: "Logout", icon: <LogoutIcon />, href: "#"} : {id: "4", title: "Login", icon: <SignIn />, href: "/login"},
+                                user ? {id: "3", title: "Logout", icon: <LogoutIcon />, href: "#"} : {id: "4", title: "Login", icon: <LogoutIcon />, href: "/login"},
                             ]
                         } close={setOpen} /> 
                         : ""

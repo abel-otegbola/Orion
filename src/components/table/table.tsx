@@ -39,9 +39,12 @@ export default function Table({ data, fields }: { data: TaskData[], fields: stri
                                             </p>
                                         </div>
                                         :
+                                        header === "date" ?
+                                        new Date(item.createdAt || 0).toLocaleDateString("GR")
+                                        :
                                         header === "Priority" ? <span  className={`${item.priority === "high" ? "bg-emerald-500/[0.3]" : item.priority === "medium" ? "bg-fuchsia-500/[0.3]" : "bg-red/[0.3]"} py-1 px-2 rounded-lg text-[8px]`}>{item?.priority}</span>
                                         :
-                                        (item)[header.toLowerCase()]
+                                        (item)[header]
                                     }</td>
                                 ))
                             }

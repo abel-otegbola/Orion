@@ -8,7 +8,6 @@ import { AuthContext } from "@/context/authContext";
 import Search from "@/components/search/search";
 import Avatar from "@/components/avatar/avatar";
 import HomeIcon from "@/assets/icons/home";
-import AnalyticsIcon from "@/assets/icons/analytics";
 import SettingsIcon from "@/assets/icons/settings";
 import CalendarIcon from "@/assets/icons/calendar";
 import TeamIcon from "@/assets/icons/team";
@@ -38,7 +37,7 @@ export default function Layout({
     const generalLinks: Link[] = [
         { id: 0, label: "Dashboard", icon: <HomeIcon className="w-[20px] h-[20px]"/>, link: "/dashboard" },
         { id: 1, label: "Tasks management", icon: <CalendarIcon className="w-[20px] h-[20px]" />, link: "/dashboard/tasks" },
-        { id: 3, label: "Finance management", icon: <AnalyticsIcon className="w-[20px] h-[20px]" />, link: "/dashboard/finance", subtext: "soon" },
+        // { id: 3, label: "Finance management", icon: <AnalyticsIcon className="w-[20px] h-[20px]" />, link: "/dashboard/finance", subtext: "soon" },
         { id: 4, label: "Teams management", icon: <TeamIcon className="w-[20px] h-[20px]" />, link: "/dashboard/teams", subtext: "soon" },
         { id: 5, label: "Settings", icon: <SettingsIcon className="w-[20px] h-[20px]" />, link: "/settings" },
     ]

@@ -33,12 +33,12 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
     <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] backdrop-blur-sm flex items-center justify-end z-[100]">        
         <div className="flex flex-col h-full p-4 px-8 gap-4 sm:max-w-[400px] w-full overflow-auto bg-white dark:bg-dark w-full">
             <button className="py-2 mb-4" onClick={() => setClose(false)}><X /></button>
-            <Input label={"Title"} onChange={(e) => setData({ ...data, title: e.target.value })} value={data.title} type={"text"} />
-            <Input label={"Date"} onChange={(e) => setData({ ...data, date: e.target.value })} value={data.date} type={"date"} />
+            <Input placeholder="Write title" onChange={(e) => setData({ ...data, title: e.target.value })} value={data.title} type={"text"} />
+            <Input placeholder="Date" onChange={(e) => setData({ ...data, date: e.target.value })} value={data.date} type={"date"} />
 
             <div className="grid grid-cols-2 gap-2">
-                <Input label={"Start Time"} onChange={(e) => setData({ ...data, durationStart: e.target.value })} value={data.durationStart} type={"time"} />
-                <Input label={"End Time"} onChange={(e) => setData({ ...data, durationEnd: e.target.value })} value={data.durationEnd} type={"time"} />
+                <Input label={"Start Time"} className="w-full" onChange={(e) => setData({ ...data, durationStart: e.target.value })} value={data.durationStart} type={"time"} />
+                <Input label={"End Time"} className="w-full" onChange={(e) => setData({ ...data, durationEnd: e.target.value })} value={data.durationEnd} type={"time"} />
             </div>
 
             <Dropdown
@@ -63,7 +63,7 @@ export default function NewTask({ task, setClose }: { task?: TaskData, setClose:
 
             {
               user?.email ?
-              <Button variant="secondary" type="button" className="p-2 w-full bg-purple text-white rounded"
+              <Button variant="secondary" type="button" className="p-2 w-full bg-primary text-white rounded"
                 onClick={() => 
                     task ?
                     updateTask(task.id, { ...data })
