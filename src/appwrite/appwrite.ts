@@ -1,3 +1,4 @@
+'use client'
 import { Account, Client, Databases } from "appwrite";
 
 const client = new Client();
