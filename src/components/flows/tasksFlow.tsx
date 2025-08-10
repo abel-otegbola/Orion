@@ -1,17 +1,21 @@
 'use client'
 import CalendarIcon from "@/assets/icons/calendar";
 import { TaskData } from "@/interface/task";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../button/button";
 import toast, { Toaster } from "react-hot-toast";
 import { Star, X } from "@phosphor-icons/react";
 import TaskList from "./prioritySection";
+import { useRouter } from "next/navigation";
+import { TasksContext } from "@/context/tasksContext";
 
 export default function TasksFlow() {
+    const {addNewTask} = useContext(TasksContext)
     const [tasks, setTasks] = useState<TaskData[]>([])
     const [flow, setFlow] = useState(0)
     const [taskInput, setTaskInput] = useState<string>("")
     const [popup, setPopup] = useState({ type: "", msg: "" });
+    const router = useRouter();
 
     const handleAddTask = () => {
         if(taskInput === "") {
@@ -43,13 +47,14 @@ export default function TasksFlow() {
     }, [popup])
 
     const finishOnboarding = () => {
-
+        tasks.map(task => (
+            addNewTask(task)
+        ))
+        router.push("/account/tasks")
     }
 
     return (
-    <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] text-[12px] backdrop-blur-sm flex items-center justify-center z-[100]">        
-        <div className="flex flex-col p-6 px-6 gap-4 sm:max-w-[400px] shadow-lg border border-gray-500/[0.2] rounded-lg w-full overflow-auto bg-white dark:bg-dark dark:bg-gradient-to-tr from-dark via-[#552B2620] to-dark w-full">
-        
+        <>
             <Toaster containerClassName="p-8" />
             {/* <div
                 className="animate-rotate absolute inset-0 h-full w-full bg-[conic-gradient(#E334A140_20deg,transparent_120deg)]"
@@ -58,7 +63,7 @@ export default function TasksFlow() {
                 className="absolute inset-0 h-full top-[0.5%] w-[99%] left-[0.5%] bg-white dark:bg-dark rounded-lg"
             ></div> */}
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mb-4">
                 <CalendarIcon className="rounded-full p-1 w-[32px] h-[32px] bg-gray-200/[0.2]" />
                 <div className="text-start">
                 <h2 className="font-medium text-[16px]">Today&apos;s tasks</h2>
@@ -82,8 +87,8 @@ export default function TasksFlow() {
                         }
                     </div>
 
-                    <div className="flex p-2 rounded shadow-lg bg-slate-100 dark:bg-dark border border-gray-500/[0.2]">
-                        <input value={taskInput} onChange={(e) => setTaskInput(e.target.value)} placeholder="Write a task, idea, or goal…" className="flex-1 w-full p-[2px] bg-transparent outline-none border-none"/>
+                    <div className="flex p-2 rounded-[12px] shadow-lg bg-slate-100 dark:bg-dark border border-gray-500/[0.2]">
+                        <input value={taskInput} onChange={(e) => setTaskInput(e.target.value)} placeholder="Write a task, idea, or goal…" className="flex-1 w-full p-[2px] px-2 bg-transparent outline-none border-none"/>
                         <Button size="sm" className="w-full" onClick={() => handleAddTask()}>Add</Button>
                     </div>
                     <p className="text-[8px] justify-end py-0 flex items-center gap-1">
@@ -132,8 +137,6 @@ export default function TasksFlow() {
                 <Button size="sm" className={`${flow < 1 ? "hidden" : "flex"}`} onClick={() => setFlow(flow-1)}>Back</Button>
                 <Button size="sm" variant="secondary" className="bg-primary" onClick={() => flow === 3 ? finishOnboarding() : tasks.length > 0 ? setFlow(flow+1) : setPopup({ type: "error", msg: "Please add a task to continue" })}>{flow < 3 ? "Save and Continue" : "Finish"}</Button>
             </div>
-
-        </div>
-    </div>
+        </>
     )
 }

@@ -46,7 +46,7 @@ function Topbar() {
     const pathname  = usePathname()
 
     return (
-        <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full border border-gray-500/[0.1] justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/dashboard") !== -1 ? "hidden" : "md:px-[5%] px-6"}`}>
+        <div className={`flex sticky top-0 bg-white/[0.7] dark:bg-dark/[0.7] backdrop-blur-sm left-0 w-full border border-gray-500/[0.1] justify-between items-center z-[3] md:py-1 py-3 ${pathname.indexOf("/account") !== -1 ? "hidden" : "md:px-[5%] px-6"}`}>
             <div className="md:w-[33%]">
                 <Link href="/" className="rounded text-[20px] flex flex-col justify-center px-2 font-bold">
                     <Image src="/logo.png" alt="logo" width={60} height={20} />

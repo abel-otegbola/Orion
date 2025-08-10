@@ -11,7 +11,6 @@ import Table from "@/components/table/table";
 import ThemeSelector from "@/components/themeSelector/themeSelector";
 import { AuthContext } from "@/context/authContext";
 import { useTasks } from "@/context/tasksContext";
-// import { ArrowRight } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
 
@@ -57,30 +56,13 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
 
-              { taskFlow ? <TasksFlow /> : "" }
-              {/* <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
-                <div className="flex justify-between p-1">
-                  <Link href="/todos" className="text-md">Investment</Link>
-                  <button><ArrowRight size={16}/></button>
+              { taskFlow ? 
+                <div className="w-full h-full fixed top-0 left-0 bg-dark/[0.6] text-[12px] backdrop-blur-sm flex items-center justify-center z-[100]">        
+                    <div className="flex flex-col p-6 px-6 gap-4 sm:max-w-[400px] shadow-lg border border-gray-500/[0.2] rounded-lg w-full overflow-auto bg-white dark:bg-dark dark:bg-gradient-to-tr from-dark via-[#552B2620] to-dark w-full">
+                      <TasksFlow /> 
+                    </div>
                 </div>
-
-                <div className="flex justify-between items-center">
-                  <p className="text-[20px] font-medium p-1 flex-1 flex items-end">24</p>
-                  <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-6 p-2 md:px-3 rounded-[12px] border border-gray-500/[0.2] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318] border border0gray-500/[0.1]">
-                <div className="flex justify-between p-1">
-                  <Link href="/todos" className="text-md">Todo-list</Link>
-                  <button><ArrowRight size={16}/></button>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <p className="text-[20px] font-medium p-1 flex-1 flex items-end">12</p>
-                  <p className="opacity-[0.7] text-[10px] p-1 flex-1 flex items-end">Sun 20th Dec 2024</p>
-                </div>
-              </div> */}
+              : "" }
 
               {
                 tasks.map((todo, i) => (

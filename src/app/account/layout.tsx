@@ -17,6 +17,7 @@ import { useTasks } from "@/context/tasksContext";
 import { TaskData } from "@/interface/task";
 import { dateParser } from "@/helpers/dateParser";
 import Calendar from "react-calendar";
+import AnalyticsIcon from "@/assets/icons/analytics";
 
 
 export interface Link {
@@ -35,11 +36,11 @@ export default function Layout({
     const pathname = usePathname();
 
     const generalLinks: Link[] = [
-        { id: 0, label: "Dashboard", icon: <HomeIcon className="w-[20px] h-[20px]"/>, link: "/dashboard" },
-        { id: 1, label: "Tasks management", icon: <CalendarIcon className="w-[20px] h-[20px]" />, link: "/dashboard/tasks" },
-        // { id: 3, label: "Finance management", icon: <AnalyticsIcon className="w-[20px] h-[20px]" />, link: "/dashboard/finance", subtext: "soon" },
-        { id: 4, label: "Teams management", icon: <TeamIcon className="w-[20px] h-[20px]" />, link: "/dashboard/teams", subtext: "soon" },
-        { id: 5, label: "Settings", icon: <SettingsIcon className="w-[20px] h-[20px]" />, link: "/settings" },
+        { id: 0, label: "Dashboard", icon: <HomeIcon className="w-[20px] h-[20px]"/>, link: "/account/dashboard" },
+        { id: 1, label: "Create Tasks", icon: <AnalyticsIcon className="w-[20px] h-[20px]"/>, link: "/account" },
+        { id: 2, label: "Tasks management", icon: <CalendarIcon className="w-[20px] h-[20px]" />, link: "/account/tasks" },
+        { id: 4, label: "Teams management", icon: <TeamIcon className="w-[20px] h-[20px]" />, link: "/account/teams", subtext: "soon" },
+        { id: 5, label: "Settings", icon: <SettingsIcon className="w-[20px] h-[20px]" />, link: "/account/settings" },
     ]
 
     const booked = tasks?.filter(item => item.user === user?.email).map((task: TaskData) => dateParser(task.date));
