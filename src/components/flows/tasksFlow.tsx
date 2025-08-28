@@ -8,9 +8,11 @@ import { Star, X } from "@phosphor-icons/react";
 import TaskList from "./prioritySection";
 import { useRouter } from "next/navigation";
 import { TasksContext } from "@/context/tasksContext";
+import { AuthContext } from "@/context/authContext";
 
 export default function TasksFlow() {
     const {addNewTask} = useContext(TasksContext)
+      const { user } = useContext(AuthContext)
     const [tasks, setTasks] = useState<TaskData[]>([])
     const [flow, setFlow] = useState(0)
     const [taskInput, setTaskInput] = useState<string>("")
@@ -47,10 +49,12 @@ export default function TasksFlow() {
     }, [popup])
 
     const finishOnboarding = () => {
-        tasks.map(task => (
-            addNewTask(task)
-        ))
-        router.push("/account/tasks")
+        if(user?.email) {
+            tasks.map(task => (
+                addNewTask({...task, user: user?.email || ""})
+            ))
+            router.push("/account/tasks") 
+        }
     }
 
     return (
@@ -74,7 +78,7 @@ export default function TasksFlow() {
             <div className="relative flex overflow-hidden py-8 min-h-[300px]">
                 <div className={`absolute top-0 left-0 flex flex-col gap-2 w-full duration-500 ${flow === 0 ? "translate-x-[0%]" : "translate-x-[-100%]"}`}>
                     
-                    <div className="flex flex-col p-4 gap-1 rounded bg-gray-700/[0.09] overflow-y-auto h-[210px]">
+                    <div className="flex flex-col p-4 gap-1 rounded bg-gray-700/[0.09] overflow-y-auto h-[210px] border border-gray-500/[0.2]">
                         {
                             tasks.map(task => (
                                 <div key={task.id} className="flex items-center justify-between gap-8 rounded shadow-lg border border-gray-500/[0.2] p-2">
@@ -87,9 +91,9 @@ export default function TasksFlow() {
                         }
                     </div>
 
-                    <div className="flex p-2 rounded-[12px] shadow-lg bg-slate-100 dark:bg-dark border border-gray-500/[0.2]">
+                    <div className="flex p-2 rounded-lg shadow-lg bg-white dark:bg-[#232328] border border-gray-500/[0.2]">
                         <input value={taskInput} onChange={(e) => setTaskInput(e.target.value)} placeholder="Write a task, idea, or goal…" className="flex-1 w-full p-[2px] px-2 bg-transparent outline-none border-none"/>
-                        <Button size="sm" className="w-full" onClick={() => handleAddTask()}>Add</Button>
+                        <Button size="sm" className="" onClick={() => handleAddTask()}>Add</Button>
                     </div>
                     <p className="text-[8px] justify-end py-0 flex items-center gap-1">
                         <Star className="text-fuchsia-500" />
@@ -133,8 +137,8 @@ export default function TasksFlow() {
                 </div>
             </div>
 
-            <div className="flex items-center justify-between">
-                <Button size="sm" className={`${flow < 1 ? "hidden" : "flex"}`} onClick={() => setFlow(flow-1)}>Back</Button>
+            <div className="flex items-center justify-between mt-4">
+                {flow < 1 ?  <span></span> : <Button size="sm" className={`flex`} onClick={() => setFlow(flow-1)}>Back</Button>}
                 <Button size="sm" variant="secondary" className="bg-primary" onClick={() => flow === 3 ? finishOnboarding() : tasks.length > 0 ? setFlow(flow+1) : setPopup({ type: "error", msg: "Please add a task to continue" })}>{flow < 3 ? "Save and Continue" : "Finish"}</Button>
             </div>
         </>

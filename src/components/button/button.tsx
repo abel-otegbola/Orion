@@ -1,48 +1,69 @@
 import Link from "next/link";
 import { ReactNode, ButtonHTMLAttributes } from "react";
 
-export interface buttonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary" | "tetiary";
-    className?: string;
-    href?: string;
-    size?: "xs" | "sm" | "md" | "lg" | "xl";
-    disabled?: boolean,
-    onClick?: () => void,
-    children?: ReactNode
+export type ButtonVariant = "primary" | "secondary" | "tertiary";
+export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+  href?: string;
+  disabled?: boolean;
+  children: ReactNode;
 }
 
-export default function Button({ variant, className, href, size, disabled, onClick, children, ...props }: buttonProps) {
-    const variants = {
-        primary: "hover:bg-black hover:text-white border border-gray-500/[0.3]",
-        secondary: "bg-black text-white hover:bg-black/[0.8] border border-black dark:border-white/[0.1]",
-        tetiary: "bg-gray-500/[0.09] hover:bg-gray-500/[0.2] border border-gray-500/[0.09] "
-    }
+const baseStyles =
+  "flex items-center justify-center text-nowrap rounded w-fit transition-colors duration-700 shadow-md";
 
+const variantStyles: Record<ButtonVariant, string> = {
+  primary:
+    "text-white/70 hover:text-black border border-gray-500/30 hover:dark:border-white/20 dark:hover:text-white",
+  secondary:
+    "bg-black text-white hover:bg-black/80 border border-black dark:border-white/10",
+  tertiary:
+    "bg-gray-500/9 hover:bg-gray-500/20 border border-gray-500/9",
+};
+
+const sizeStyles: Record<ButtonSize, string> = {
+  xs: "text-[10px] py-1 px-2",
+  sm: "text-[12px] py-2 px-4",
+  md: "text-sm py-2 px-4",
+  lg: "text-[14px] py-3 px-6",
+  xl: "text-[14px] py-4 px-6",
+};
+
+export default function Button({
+  variant = "primary",
+  size = "md",
+  className = "",
+  href,
+  disabled = false,
+  onClick,
+  children,
+  ...props
+}: ButtonProps) {
+  const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${
+    disabled ? "opacity-25 cursor-not-allowed" : "cursor-pointer"
+  } ${className}`;
+
+  if (href && !disabled) {
     return (
-        <button className={` 
-             text-nowrap relative p-[2px] overflow-hidden rounded-lg 
-        `}
-        {...props}
-        name="Button"
-        role="button"
-        disabled={disabled}
-        onClick={onClick}
-        >
-            
-            { 
-            href ? 
-                <Link href={href} className={`flex items-center justify-center shadow-md md:gap-3 gap-2 md:py-2 md:px-6 py-2 px-4 max-[350px]:text-[10px] ${className} duration-500 rounded-lg text-nowrap w-fit
-            ${variants[variant || "primary"]}
-            ${disabled ? "opacity-[0.25]" : ""}
-            ${size === "xs" ? "p-1 px-2 text-[10px]" : size === "sm" ? "p-2 px-4 text-[12px]" : size === "md" ? "p-[10px] px-4" : size === "lg" ? "p-3 px-6 text-[14px]" : "p-4 px-6 text-[14px]"}`}> 
-                    { children }
-                </Link>
-                :
-                <p className={`flex items-center justify-center shadow-md md:gap-3 gap-2 md:py-2 md:px-6 py-2 px-4 max-[350px]:text-[10px] ${className} duration-500 rounded-lg text-nowrap w-fit
-            ${variants[variant || "primary"]}
-            ${disabled ? "opacity-[0.25]" : ""}
-            ${size === "xs" ? "p-1 px-2 text-[10px]" : size === "sm" ? "p-2 px-4 text-[12px]" : size === "md" ? "p-[10px] px-4" : size === "lg" ? "p-3 px-6 text-[14px]" : "p-4 px-6 text-[14px]"}`}>{ children }</p>
-            }
-        </button>
-    )
+      <Link href={href} className={buttonClasses}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      className={buttonClasses}
+      onClick={onClick}
+      disabled={disabled}
+      aria-disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 }

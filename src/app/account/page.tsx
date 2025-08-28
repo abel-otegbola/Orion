@@ -1,7 +1,6 @@
 'use client'
 
 import Avatar from "@/components/avatar/avatar";
-import Button from "@/components/button/button";
 import TasksFlow from "@/components/flows/tasksFlow";
 import ThemeSelector from "@/components/themeSelector/themeSelector";
 import { AuthContext } from "@/context/authContext";
@@ -16,16 +15,15 @@ export default function Home() {
   return (
     <main className="w-full gap-6">
 
-        <div className="grid xl:grid-cols-3 grid-cols-2 items-center w-full gap-2 justify-between p-4 border-b border-gray-500/[0.1] bg-white md:dark:bg-black/[0.3] dark:bg-[#131318]">
+        <div className="grid xl:grid-cols-3 grid-cols-2 items-center w-full gap-2 justify-between p-4 border-b border-gray-500/[0.1] bg-white dark:bg-[#232328]">
           
-          <div className="flex flex-col gap-1 justify-center">
+          <div className="flex flex-col gap-1">
             <h1 className="font-bold text-[18px]">Welcome</h1>
-            <p>Stay productive and organized</p>
           </div>
 
           <h1 className="xl:block text-center hidden font-bold text-[20px]">{new Date().getUTCHours() + ":" + new Date().getUTCMinutes()}</h1>
           <div className="flex gap-6 justify-end items-center">
-            <Button onClick={() => setTaskFlow(!taskFlow)} >Get started</Button>
+            <button onClick={() => setTaskFlow(!taskFlow)} className="md:block hidden text-primary w-fit p-1 px-2 rounded border border-primary/[0.3]">Get started</button>
             <ThemeSelector />
             <button className="flex gap-2">
                 <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email || "user" }} />
@@ -38,8 +36,8 @@ export default function Home() {
 
         </div>
 
-        <div className="flex items-center justify-center h-[80vh]">
-          <div className="md:w-[500px]">
+        <div className="flex items-center justify-center min-h-[500px]">
+          <div className="md:w-[500px] w-full p-4">
             <TasksFlow />
           </div>
         </div>

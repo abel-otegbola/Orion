@@ -14,9 +14,6 @@ import TeamIcon from "@/assets/icons/team";
 import LogoutIcon from "@/assets/icons/logout";
 import Image from "next/image";
 import { useTasks } from "@/context/tasksContext";
-import { TaskData } from "@/interface/task";
-import { dateParser } from "@/helpers/dateParser";
-import Calendar from "react-calendar";
 import AnalyticsIcon from "@/assets/icons/analytics";
 
 
@@ -30,7 +27,6 @@ export default function Layout({
     children: React.ReactNode;
   }>) {
     const [open, setOpen] = useState(false)
-    const [value, setValue] = useState(new Date())
     const { logOut, user } = useContext(AuthContext)
     const tasks = useTasks().tasks;
     const pathname = usePathname();
@@ -38,12 +34,10 @@ export default function Layout({
     const generalLinks: Link[] = [
         { id: 0, label: "Dashboard", icon: <HomeIcon className="w-[20px] h-[20px]"/>, link: "/account/dashboard" },
         { id: 1, label: "Create Tasks", icon: <AnalyticsIcon className="w-[20px] h-[20px]"/>, link: "/account" },
-        { id: 2, label: "Tasks management", icon: <CalendarIcon className="w-[20px] h-[20px]" />, link: "/account/tasks" },
+        { id: 2, label: "Tasks management", icon: <CalendarIcon className="w-[20px] h-[20px]" />, link: "/account/tasks", subtext: tasks.length.toString() },
         { id: 4, label: "Teams management", icon: <TeamIcon className="w-[20px] h-[20px]" />, link: "/account/teams", subtext: "soon" },
         { id: 5, label: "Settings", icon: <SettingsIcon className="w-[20px] h-[20px]" />, link: "/account/settings" },
     ]
-
-    const booked = tasks?.filter(item => item.user === user?.email).map((task: TaskData) => dateParser(task.date));
 
     const modalRef = useOutsideClick(setOpen, false)
 
@@ -80,20 +74,19 @@ export default function Layout({
                             </button>
                         </div>
 
-                        <div className="w-full dark:bg-[#000]/[0.2] dark:text-white text-[10px] mt-[60px]">
-                            <Calendar onChange={() => setValue} value={value} tileClassName={( { date }) => {
-                                let classes = "tile";
-
-                                if(booked?.some((b) => b.getTime() === date.getTime())) {
-                                    classes = `${classes} dotted`;
-                                }
-                                return classes;
-                            }} />
+                        <div className="w-full dark:bg-[#000]/[0.2] dark:text-white text-[10px] mt-[60px] p-2 rounded-lg">
+                            <button className="flex gap-2">
+                                <Avatar user={{id: "0", email: user?.email || "", fullname: user?.email || "user" }} />
+                                <div className="text-start">
+                                    <h2 className="font-medium md:block hidden text-[14px]">{user?.email?.split("@")[0]}</h2>
+                                    <p className="text-[10px] md:block hidden">{user?.email}</p>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div className="w-full flex-1 flex-1 bg-slate-100/[0.5] dark:bg-transparent dark:bg-gradient-to-tl from-[#552B26]/[0.3] via-black/[0.5] to-black/[0.9] ">
+                <div className="w-full flex-1 flex-1 bg-slate-100/[0.5] dark:bg-transparent dark:bg-gradient-to-tl from-[#552B26]/[0.3] via-black/[0.5] to-[#232328]">
                 {
                     children
                 }
